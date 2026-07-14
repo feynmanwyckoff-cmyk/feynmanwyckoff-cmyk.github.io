@@ -1,1 +1,315 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fayadh.web.id | Accumulation Phase</title>
+    <!-- Montserrat Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Favicon (Inline SVG Rocket Icon for Github Pages compatibility without extra files) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
+    
+    <style>
+        :root {
+            --bg-dark: #050914;
+            --text-main: #f8fafc;
+            --text-muted: #64748b;
+            --accent-rocket: #ef4444; /* Red for ignition */
+            --accent-crypto: #10b981; /* Green for bullish/crypto */
+            --accent-tech: #3b82f6;   /* Blue for tech/GAS */
+            --grid-line: rgba(30, 41, 59, 0.4);
+        }
 
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 40px 20px 20px 20px;
+            overflow-x: hidden;
+            
+            /* Clean minimal grid background */
+            background-image: 
+                linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+                linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+            background-size: 50px 50px;
+            background-position: center center;
+        }
+
+        .container {
+            max-width: 700px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            margin: auto 0; /* Centers content vertically between header space and footer */
+        }
+
+        /* Domain Header */
+        .domain-tag {
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            color: var(--accent-tech);
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            display: inline-block;
+            padding: 8px 16px;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 20px;
+            background: rgba(59, 130, 246, 0.05);
+            backdrop-filter: blur(4px);
+        }
+
+        /* Typography - Feynman Style (Clear, No clutter) */
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 15px;
+            letter-spacing: -0.03em;
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            font-weight: 300;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+
+        /* ANIMATION SECTION: Wyckoff meets SpaceX 
+           "Cocoklogi": Spring = Ignition, Mark-Up = Liftoff 
+        */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 250px;
+            margin: 0 auto 40px auto;
+            border-bottom: 2px dashed var(--grid-line);
+            border-left: 2px dashed var(--grid-line);
+        }
+
+        /* Wyckoff Market Structure SVG */
+        .wyckoff-svg {
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+        }
+
+        .market-line {
+            fill: none;
+            stroke: var(--accent-crypto);
+            stroke-width: 3;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            /* Dash animation to simulate chart drawing */
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: drawChart 4s ease-out forwards;
+        }
+
+        @keyframes drawChart {
+            to { stroke-dashoffset: 0; }
+        }
+
+        /* Technical Annotations */
+        .annotation {
+            font-size: 10px;
+            font-weight: 600;
+            fill: var(--text-muted);
+            font-family: 'Montserrat', sans-serif;
+            opacity: 0;
+            animation: fadeIn 0.5s forwards;
+        }
+        .anno-ps { animation-delay: 0.5s; }
+        .anno-sc { animation-delay: 1s; }
+        .anno-st { animation-delay: 1.5s; }
+        .anno-spring { animation-delay: 2.2s; fill: var(--accent-rocket); }
+        .anno-markup { animation-delay: 3s; fill: var(--text-main); font-size: 12px;}
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        /* The Rocket */
+        .rocket {
+            position: absolute;
+            font-size: 24px;
+            left: 55%; 
+            top: 85%;
+            transform: translate(-50%, -50%) rotate(45deg);
+            opacity: 0;
+            animation: rocketLaunch 8s infinite cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Rocket trajectory following the markup phase */
+        @keyframes rocketLaunch {
+            0% { 
+                opacity: 0; 
+                left: 10%; top: 40%; 
+                transform: translate(-50%, -50%) rotate(0deg) scale(0.5); 
+            }
+            15% { opacity: 1; left: 25%; top: 65%; transform: translate(-50%, -50%) rotate(10deg) scale(0.8); } /* SC */
+            30% { left: 40%; top: 50%; transform: translate(-50%, -50%) rotate(-5deg) scale(0.9); } /* ST */
+            45% { left: 55%; top: 85%; transform: translate(-50%, -50%) rotate(0deg) scale(1); } /* SPRING - Ignition */
+            50% { left: 55%; top: 85%; transform: translate(-50%, -50%) rotate(0deg) scale(1.1); } /* Vibrate/Engine Start */
+            52% { left: 54%; top: 86%; transform: translate(-50%, -50%) rotate(-5deg) scale(1.1); }
+            54% { left: 56%; top: 84%; transform: translate(-50%, -50%) rotate(5deg) scale(1.1); }
+            60% { left: 55%; top: 85%; transform: translate(-50%, -50%) rotate(45deg) scale(1.2); } /* Point Up */
+            80% { left: 95%; top: 5%; transform: translate(-50%, -50%) rotate(45deg) scale(1.5); opacity: 1; } /* MARKUP Liftoff */
+            90% { left: 110%; top: -20%; opacity: 0; }
+            100% { opacity: 0; }
+        }
+
+        /* Topics tags */
+        .topics {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        .topic-pill {
+            font-size: 0.8rem;
+            padding: 6px 14px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+        }
+
+        .topic-pill:hover {
+            border-color: var(--text-main);
+            color: var(--text-main);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Feynman Quote */
+        .quote {
+            font-size: 0.9rem;
+            font-style: italic;
+            color: var(--text-muted);
+            border-left: 2px solid var(--grid-line);
+            padding-left: 15px;
+            text-align: left;
+            margin: 0 auto;
+            max-width: 500px;
+        }
+
+        /* Professional Professional Footer */
+        footer {
+            width: 100%;
+            text-align: center;
+            padding-top: 40px;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            letter-spacing: 0.1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 40px;
+        }
+        
+        footer a {
+            color: var(--accent-tech);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+            .chart-container { height: 200px; }
+            .rocket { font-size: 20px; }
+            body { padding-top: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Main Content Container -->
+    <div class="container">
+        
+        <div class="domain-tag">fayadh.web.id</div>
+        
+        <h1>System in Accumulation Phase</h1>
+        <p class="subtitle">
+            Ruang digital ini sedang dirakit. Bersiap untuk berbagi fundamental pengetahuan, analisis, dan rekayasa sistem yang terukur.
+        </p>
+
+        <!-- Animation: Wyckoff Market Structure + SpaceX Liftoff -->
+        <div class="chart-container">
+            <svg class="wyckoff-svg" viewBox="0 0 500 250" preserveAspectRatio="none">
+                <!-- Support/Resistance zones -->
+                <rect x="0" y="60" width="500" height="120" fill="rgba(255,255,255,0.02)" />
+                <line x1="0" y1="60" x2="500" y2="60" stroke="rgba(255,255,255,0.1)" stroke-dasharray="5 5" />
+                <line x1="0" y1="180" x2="500" y2="180" stroke="rgba(255,255,255,0.1)" stroke-dasharray="5 5" />
+
+                <!-- Wyckoff Curve (PS -> SC -> AR -> ST -> Spring -> SOS -> Markup) -->
+                <path class="market-line" d="
+                    M 0,100 
+                    L 50,110 
+                    L 125,180 
+                    L 175,60 
+                    L 200,140 
+                    L 240,110
+                    L 275,215
+                    L 310,130
+                    L 350,90
+                    L 370,110
+                    L 450,20
+                    L 500,0
+                " />
+
+                <!-- Annotations -->
+                <text x="40" y="100" class="annotation anno-ps">PS</text>
+                <text x="110" y="195" class="annotation anno-sc">SC</text>
+                <text x="165" y="50" class="annotation anno-ps">AR</text>
+                <text x="190" y="155" class="annotation anno-st">ST</text>
+                <text x="250" y="235" class="annotation anno-spring">SPRING (IGNITION)</text>
+                <text x="340" y="80" class="annotation anno-sc">SOS</text>
+                <text x="420" y="30" class="annotation anno-markup">MARK-UP 🚀</text>
+            </svg>
+            
+            <!-- Rocket Element -->
+            <div class="rocket">🚀</div>
+        </div>
+
+        <!-- Future Content Tags -->
+        <div class="topics">
+            <div class="topic-pill">Market Structure</div>
+            <div class="topic-pill">Cryptocurrency</div>
+            <div class="topic-pill">Google Apps Script (GAS)</div>
+            <div class="topic-pill">Web Automation</div>
+        </div>
+
+        <div class="quote">
+            "Sama seperti market yang membutuhkan akumulasi sebelum tren baru, pemahaman yang kuat membutuhkan konstruksi fundamental dari dasar."
+        </div>
+
+    </div>
+
+    <!-- Professional Page Footer -->
+    <footer>
+        &copy; 2026 <a href="https://fayadh.web.id">fayadh.web.id</a>. All Rights Reserved. Powered by GitHub Pages.
+    </footer>
+
+</body>
+</html>
