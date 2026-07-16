@@ -5,24 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>fayadh.web.id - Mission Control</title>
     
-    <!-- ================= SEO & META TAGS ================= -->
     <meta name="description" content="Misi baru sedang dipersiapkan. Fayadh.web.id siap meluncur ke orbit digital.">
     
-    <!-- ================= OPEN GRAPH (UNTUK WHATSAPP/SOSMED) ================= -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://fayadh.web.id/">
     <meta property="og:title" content="fayadh.web.id - Mission Control">
     <meta property="og:description" content="Misi baru sedang dipersiapkan. Fayadh.web.id siap meluncur ke orbit digital.">
-    <!-- Menggunakan gambar roket nyata dari Unsplash agar diproses oleh WhatsApp -->
     <meta property="og:image" content="https://images.unsplash.com/photo-1517976487492-5750f3195933?q=80&w=1200&auto=format&fit=crop"> 
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     
-    <!-- ================= FAVICON ================= -->
-    <!-- Ikon roket (emoji) yang dijadikan favicon agar lebih relevan dengan tema -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
 
-    <!-- Font & CSS -->
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Inter:wght@300;400&display=swap" rel="stylesheet">
     
     <style>
@@ -49,13 +43,11 @@
             min-height: 100vh;
             overflow: hidden;
             position: relative;
-            /* Latar belakang bintang statis menggunakan radial gradient */
             background-image: radial-gradient(circle at 15% 50%, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
                               radial-gradient(circle at 85% 30%, rgba(255, 255, 255, 0.05) 1.5px, transparent 1.5px),
                               radial-gradient(circle at 50% 80%, rgba(0, 240, 255, 0.1) 2px, transparent 2px);
         }
 
-        /* Nebula efek */
         .nebula {
             position: absolute;
             width: 60vw;
@@ -112,7 +104,6 @@
             font-weight: 300;
         }
 
-        /* --- Animasi Roket (Tombol Putar Musik) --- */
         .launch-control {
             display: flex;
             flex-direction: column;
@@ -132,7 +123,6 @@
             animation: hoverRocket 3s ease-in-out infinite;
         }
 
-        /* Saat roket meluncur (setelah diklik) */
         .launching .rocket-icon {
             animation: blastOff 1.5s ease-in forwards;
         }
@@ -150,7 +140,6 @@
             color: var(--neon-blue);
         }
 
-        /* --- Keyframes --- */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
@@ -170,7 +159,7 @@
 
         @keyframes blastOff {
             0% { transform: translateY(0) scale(1); opacity: 1; }
-            20% { transform: translateY(10px) scale(0.9); } /* Ancang-ancang */
+            20% { transform: translateY(10px) scale(0.9); }
             100% { transform: translateY(-500px) scale(0.5); opacity: 0; }
         }
 
@@ -192,18 +181,14 @@
         
         <p>Infrastruktur sedang dikalibrasi. Kami sedang mempersiapkan modul pendaratan baru untuk pengalaman eksplorasi digital yang optimal.</p>
         
-        <!-- Tombol interaktif berkedok Roket -->
         <div class="launch-control" id="launchBtn" title="Inisiasi Urutan Peluncuran">
             <div class="rocket-icon" id="rocketIcon">🚀</div>
             <div class="launch-text" id="launchText">Klik untuk Inisiasi Audio</div>
         </div>
     </div>
 
-    <!-- AUDIO PLAYER -->
-    <!-- Menggunakan musik ambient space sci-fi -->
-    <audio id="bg-music" loop>
-        <!-- Audio placeholder ambient space -->
-        <source src="https://cdn.pixabay.com/download/audio/2022/02/10/audio_fcb640eb24.mp3?filename=space-ambient-113204.mp3" type="audio/mpeg">
+    <audio id="bg-music" loop preload="auto">
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
     </audio>
 
     <script>
@@ -217,7 +202,9 @@
                 isLaunched = true;
                 
                 // Mulai mainkan musik
-                audio.play();
+                audio.play().catch(error => {
+                    console.log("Audio play failed:", error);
+                });
 
                 // Tambahkan class animasi meluncur
                 launchBtn.classList.add('launching');
@@ -226,10 +213,10 @@
                 launchText.style.color = '#00f0ff';
                 launchText.innerText = 'Audio Terhubung. Menuju Orbit...';
 
-                // Kembalikan roket setelah 3 detik dan ubah ikonnya jadi alien/ufo
+                // Kembalikan roket setelah 1.5 detik dan ubah ikonnya jadi alien/ufo
                 setTimeout(() => {
                     launchBtn.classList.remove('launching');
-                    document.getElementById('rocketIcon').innerText = '🛸'; // Ganti jadi UFO
+                    document.getElementById('rocketIcon').innerText = '🛸';
                     launchText.innerText = 'Transmisi Sedang Berjalan (Klik untuk Pause)';
                 }, 1500);
 
