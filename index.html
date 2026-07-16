@@ -3,26 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>fayadh.web.id - Segera Hadir</title>
+    <title>fayadh.web.id - Mission Control</title>
     
-    <meta name="description" content="Sesuatu yang luar biasa sedang dipersiapkan. Kami sedang merancang pengalaman digital yang baru.">
+    <!-- ================= SEO & META TAGS ================= -->
+    <meta name="description" content="Misi baru sedang dipersiapkan. Fayadh.web.id siap meluncur ke orbit digital.">
     
+    <!-- ================= OPEN GRAPH (UNTUK WHATSAPP/SOSMED) ================= -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://fayadh.web.id/">
-    <meta property="og:title" content="fayadh.web.id - Segera Hadir">
-    <meta property="og:description" content="Sesuatu yang luar biasa sedang dipersiapkan di fayadh.web.id. Nantikan kehadiran kami segera!">
-    <meta property="og:image" content="https://placehold.co/1200x630/09090b/3b82f6?text=Fayadh.web.id"> 
+    <meta property="og:title" content="fayadh.web.id - Mission Control">
+    <meta property="og:description" content="Misi baru sedang dipersiapkan. Fayadh.web.id siap meluncur ke orbit digital.">
+    <!-- Menggunakan gambar roket nyata dari Unsplash agar diproses oleh WhatsApp -->
+    <meta property="og:image" content="https://images.unsplash.com/photo-1517976487492-5750f3195933?q=80&w=1200&auto=format&fit=crop"> 
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     
-    <link rel="icon" type="image/png" href="https://ui-avatars.com/api/?name=F&background=09090b&color=3b82f6&bold=true&rounded=true">
-    <link rel="apple-touch-icon" href="https://ui-avatars.com/api/?name=F&background=09090b&color=3b82f6&bold=true&size=180">
+    <!-- ================= FAVICON ================= -->
+    <!-- Ikon roket (emoji) yang dijadikan favicon agar lebih relevan dengan tema -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+    <!-- Font & CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --bg-color: #09090b; 
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            --space-black: #050510;
+            --starlight: #e2e8f0;
+            --neon-blue: #00f0ff;
+            --rocket-flame: #ff5e00;
         }
 
         * {
@@ -33,144 +41,209 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
+            background-color: var(--space-black);
+            color: var(--starlight);
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             overflow: hidden;
             position: relative;
-            cursor: pointer; /* Memberi tahu user bisa diklik */
+            /* Latar belakang bintang statis menggunakan radial gradient */
+            background-image: radial-gradient(circle at 15% 50%, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+                              radial-gradient(circle at 85% 30%, rgba(255, 255, 255, 0.05) 1.5px, transparent 1.5px),
+                              radial-gradient(circle at 50% 80%, rgba(0, 240, 255, 0.1) 2px, transparent 2px);
         }
 
-        .glow-effect {
+        /* Nebula efek */
+        .nebula {
             position: absolute;
-            width: 40vw;
-            height: 40vw;
-            background: var(--accent-gradient);
-            filter: blur(150px);
-            opacity: 0.15;
-            border-radius: 50%;
+            width: 60vw;
+            height: 60vw;
+            background: radial-gradient(circle, rgba(0,240,255,0.15) 0%, rgba(139,92,246,0.05) 50%, transparent 70%);
+            filter: blur(80px);
             z-index: 0;
-            animation: pulse 8s ease-in-out infinite alternate;
+            animation: float 20s ease-in-out infinite alternate;
         }
 
         .container {
             position: relative;
-            z-index: 1;
+            z-index: 10;
             text-align: center;
             padding: 2rem;
-            max-width: 600px;
+            max-width: 650px;
             animation: fadeIn 1.5s ease-out forwards;
         }
 
-        .badge {
+        .status-badge {
             display: inline-block;
-            padding: 0.5rem 1rem;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 50px;
-            font-size: 0.875rem;
-            font-weight: 500;
-            color: var(--text-muted);
-            margin-bottom: 1.5rem;
-            letter-spacing: 1px;
+            padding: 0.5rem 1.2rem;
+            background: rgba(0, 240, 255, 0.05);
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            border-radius: 4px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.75rem;
+            color: var(--neon-blue);
+            margin-bottom: 2rem;
+            letter-spacing: 2px;
             text-transform: uppercase;
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.1);
         }
 
         h1 {
-            font-size: 3.5rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3.8rem;
             font-weight: 700;
-            line-height: 1.2;
+            line-height: 1.1;
             margin-bottom: 1rem;
             letter-spacing: -1px;
         }
 
-        .gradient-text {
-            background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        h1 span {
+            color: var(--neon-blue);
+            text-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
         }
 
         p {
-            font-size: 1.125rem;
-            color: var(--text-muted);
-            line-height: 1.6;
-            margin-bottom: 2.5rem;
+            font-size: 1.1rem;
+            color: #94a3b8;
+            line-height: 1.7;
+            margin-bottom: 3rem;
             font-weight: 300;
         }
 
-        .contact-btn {
-            display: inline-block;
-            padding: 0.875rem 2rem;
-            background: var(--text-main);
-            color: var(--bg-color);
-            text-decoration: none;
-            font-weight: 500;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            position: relative;
-            z-index: 10;
+        /* --- Animasi Roket (Tombol Putar Musik) --- */
+        .launch-control {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
         }
 
-        .contact-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.1);
+        .launch-control:hover {
+            transform: translateY(-5px);
         }
 
-        .music-hint {
-            margin-top: 2rem;
-            font-size: 0.8rem;
-            color: #475569;
-            animation: fadeIn 2s ease-in forwards;
+        .rocket-icon {
+            font-size: 3rem;
+            filter: drop-shadow(0 0 15px rgba(0, 240, 255, 0.5));
+            animation: hoverRocket 3s ease-in-out infinite;
         }
 
+        /* Saat roket meluncur (setelah diklik) */
+        .launching .rocket-icon {
+            animation: blastOff 1.5s ease-in forwards;
+        }
+
+        .launch-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            color: #64748b;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .launch-control:hover .launch-text {
+            color: var(--neon-blue);
+        }
+
+        /* --- Keyframes --- */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 0.15; }
-            100% { transform: scale(1.1); opacity: 0.25; }
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(50px, 30px) scale(1.1); }
+            100% { transform: translate(-30px, -50px) scale(0.9); }
+        }
+
+        @keyframes hoverRocket {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+
+        @keyframes blastOff {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            20% { transform: translateY(10px) scale(0.9); } /* Ancang-ancang */
+            100% { transform: translateY(-500px) scale(0.5); opacity: 0; }
         }
 
         @media (max-width: 600px) {
             h1 { font-size: 2.5rem; }
             p { font-size: 1rem; }
-            .glow-effect { width: 80vw; height: 80vw; }
+            .nebula { width: 90vw; height: 90vw; }
         }
     </style>
 </head>
 <body>
 
-    <div class="glow-effect"></div>
+    <div class="nebula"></div>
 
     <div class="container">
-        <div class="badge">Sedang Dibangun</div>
+        <div class="status-badge">🟢 System Offline - Maintenance</div>
         
-        <h1>fayadh.<span class="gradient-text">web.id</span></h1>
+        <h1>fayadh.<span>web.id</span></h1>
         
-        <p>Sesuatu yang luar biasa sedang dipersiapkan. Kami sedang merancang pengalaman digital yang baru dan akan segera kembali.</p>
+        <p>Infrastruktur sedang dikalibrasi. Kami sedang mempersiapkan modul pendaratan baru untuk pengalaman eksplorasi digital yang optimal.</p>
         
-        <a href="mailto:halo@fayadh.web.id" class="contact-btn">Hubungi Saya</a>
-
-        <div class="music-hint">(Klik di mana saja untuk memutar musik)</div>
+        <!-- Tombol interaktif berkedok Roket -->
+        <div class="launch-control" id="launchBtn" title="Inisiasi Urutan Peluncuran">
+            <div class="rocket-icon" id="rocketIcon">🚀</div>
+            <div class="launch-text" id="launchText">Klik untuk Inisiasi Audio</div>
+        </div>
     </div>
 
+    <!-- AUDIO PLAYER -->
+    <!-- Menggunakan musik ambient space sci-fi -->
     <audio id="bg-music" loop>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        <!-- Audio placeholder ambient space -->
+        <source src="https://cdn.pixabay.com/download/audio/2022/02/10/audio_fcb640eb24.mp3?filename=space-ambient-113204.mp3" type="audio/mpeg">
     </audio>
 
     <script>
-        // Script untuk memutar musik saat interaksi pertama agar tidak diblokir browser
-        document.body.addEventListener('click', function() {
-            var audio = document.getElementById("bg-music");
-            if (audio.paused) {
+        const launchBtn = document.getElementById('launchBtn');
+        const launchText = document.getElementById('launchText');
+        const audio = document.getElementById("bg-music");
+        let isLaunched = false;
+
+        launchBtn.addEventListener('click', function() {
+            if (!isLaunched) {
+                isLaunched = true;
+                
+                // Mulai mainkan musik
                 audio.play();
-                document.querySelector('.music-hint').style.display = 'none'; // Sembunyikan teks hint setelah musik main
+
+                // Tambahkan class animasi meluncur
+                launchBtn.classList.add('launching');
+                
+                // Ubah teks
+                launchText.style.color = '#00f0ff';
+                launchText.innerText = 'Audio Terhubung. Menuju Orbit...';
+
+                // Kembalikan roket setelah 3 detik dan ubah ikonnya jadi alien/ufo
+                setTimeout(() => {
+                    launchBtn.classList.remove('launching');
+                    document.getElementById('rocketIcon').innerText = '🛸'; // Ganti jadi UFO
+                    launchText.innerText = 'Transmisi Sedang Berjalan (Klik untuk Pause)';
+                }, 1500);
+
+            } else {
+                // Fitur Pause/Play setelah roket meluncur
+                if (audio.paused) {
+                    audio.play();
+                    launchText.innerText = 'Transmisi Sedang Berjalan (Klik untuk Pause)';
+                    document.getElementById('rocketIcon').style.animationPlayState = 'running';
+                } else {
+                    audio.pause();
+                    launchText.innerText = 'Transmisi Dijeda (Klik untuk Play)';
+                    document.getElementById('rocketIcon').style.animationPlayState = 'paused';
+                }
             }
         });
     </script>
