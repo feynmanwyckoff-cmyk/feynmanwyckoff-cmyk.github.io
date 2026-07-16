@@ -5,21 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>fayadh.web.id - Segera Hadir</title>
     
-    <!-- ================= FAVICON ================= -->
-    <!-- Format standar (ICO) -->
+    <!-- ================= SEO & META TAGS ================= -->
+    <meta name="description" content="Sesuatu yang luar biasa sedang dipersiapkan. Kami sedang merancang pengalaman digital yang baru.">
+    
+    <!-- ================= OPEN GRAPH (UNTUK WHATSAPP/SOSMED) ================= -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://fayadh.web.id/">
+    <meta property="og:title" content="fayadh.web.id - Segera Hadir">
+    <meta property="og:description" content="Sesuatu yang luar biasa sedang dipersiapkan di fayadh.web.id. Nantikan kehadiran kami segera!">
+    <!-- GANTI LINK DI BAWAH DENGAN LINK GAMBAR PREVIEW KAMU -->
+    <meta property="og:image" content="https://fayadh.web.id/preview-wa.jpg"> 
+    
+    <!-- ================= TWITTER CARD (OPSIONAL UNTUK TWITTER/X) ================= -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="fayadh.web.id - Segera Hadir">
+    <meta name="twitter:description" content="Sesuatu yang luar biasa sedang dipersiapkan di fayadh.web.id.">
+    <!-- GANTI LINK DI BAWAH DENGAN LINK GAMBAR PREVIEW KAMU -->
+    <meta name="twitter:image" content="https://fayadh.web.id/preview-wa.jpg">
+
+    <!-- ================= FAVICON (UNTUK TAB BROWSER) ================= -->
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <!-- Format PNG untuk browser modern -->
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-    <!-- Ikon untuk perangkat Apple (iOS) -->
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-    <!-- =========================================== -->
 
-    <!-- Menggunakan font Inter yang sering dipakai di desain Figma modern -->
+    <!-- Font & CSS -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #09090b; /* Warna latar belakang gelap elegan */
+            --bg-color: #09090b; 
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
             --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
@@ -43,7 +57,6 @@
             position: relative;
         }
 
-        /* Efek cahaya/glowing background ala AI */
         .glow-effect {
             position: absolute;
             width: 40vw;
@@ -87,7 +100,6 @@
             letter-spacing: -1px;
         }
 
-        /* Efek teks gradasi */
         .gradient-text {
             background: var(--accent-gradient);
             -webkit-background-clip: text;
@@ -119,16 +131,9 @@
             box-shadow: 0 10px 25px rgba(255, 255, 255, 0.1);
         }
 
-        /* Animasi */
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes pulse {
@@ -136,7 +141,6 @@
             100% { transform: scale(1.1); opacity: 0.25; }
         }
 
-        /* Responsif untuk HP */
         @media (max-width: 600px) {
             h1 { font-size: 2.5rem; }
             p { font-size: 1rem; }
@@ -146,7 +150,6 @@
 </head>
 <body>
 
-    <!-- Efek bercahaya di belakang -->
     <div class="glow-effect"></div>
 
     <div class="container">
@@ -156,7 +159,6 @@
         
         <p>Sesuatu yang luar biasa sedang dipersiapkan. Kami sedang merancang pengalaman digital yang baru dan akan segera kembali.</p>
         
-        <!-- Ganti dengan email atau link sosial mediamu -->
         <a href="mailto:halo@fayadh.web.id" class="contact-btn">Hubungi Saya</a>
     </div>
 
