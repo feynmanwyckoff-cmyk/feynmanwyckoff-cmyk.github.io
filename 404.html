@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Sinyal Hilang | fayadh.web.id</title>
+    
+    <meta name="description" content="Koordinat tidak ditemukan. Halaman hilang di luar angkasa.">
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛰️</text></svg>">
+
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --space-black: #050510;
+            --starlight: #e2e8f0;
+            --neon-blue: #00f0ff;
+            --alert-red: #ff3366; /* Warna merah neon khusus untuk error */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--space-black);
+            color: var(--starlight);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            position: relative;
+            background-image: radial-gradient(circle at 15% 50%, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+                              radial-gradient(circle at 85% 30%, rgba(255, 255, 255, 0.05) 1.5px, transparent 1.5px),
+                              radial-gradient(circle at 50% 80%, rgba(0, 240, 255, 0.1) 2px, transparent 2px);
+        }
+
+        .nebula {
+            position: absolute;
+            width: 60vw;
+            height: 60vw;
+            background: radial-gradient(circle, rgba(255,51,102,0.1) 0%, rgba(139,92,246,0.05) 50%, transparent 70%);
+            filter: blur(80px);
+            z-index: 0;
+            animation: float 20s ease-in-out infinite alternate;
+        }
+
+        .container {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 2rem;
+            max-width: 650px;
+            animation: fadeIn 1.5s ease-out forwards;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.5rem 1.2rem;
+            background: rgba(255, 51, 102, 0.05);
+            border: 1px solid rgba(255, 51, 102, 0.3);
+            border-radius: 4px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.75rem;
+            color: var(--alert-red);
+            margin-bottom: 2rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            box-shadow: 0 0 10px rgba(255, 51, 102, 0.1);
+        }
+
+        h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 5rem;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+            letter-spacing: -2px;
+        }
+
+        h1 span {
+            color: var(--alert-red);
+            text-shadow: 0 0 20px rgba(255, 51, 102, 0.4);
+        }
+
+        h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            color: var(--starlight);
+            letter-spacing: -0.5px;
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: #94a3b8;
+            line-height: 1.7;
+            margin-bottom: 3rem;
+            font-weight: 300;
+        }
+
+        .return-control {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            cursor: pointer;
+            text-decoration: none; /* Menghilangkan garis bawah link */
+            transition: transform 0.3s ease;
+        }
+
+        .return-control:hover {
+            transform: translateY(-5px);
+        }
+
+        .radar-icon {
+            font-size: 3rem;
+            filter: drop-shadow(0 0 15px rgba(0, 240, 255, 0.5));
+            animation: pulseRadar 2s infinite;
+        }
+
+        .return-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            color: #64748b;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .return-control:hover .return-text {
+            color: var(--neon-blue);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(50px, 30px) scale(1.1); }
+            100% { transform: translate(-30px, -50px) scale(0.9); }
+        }
+
+        @keyframes pulseRadar {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.7; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 4rem; }
+            h2 { font-size: 1.25rem; }
+            p { font-size: 1rem; }
+            .nebula { width: 90vw; height: 90vw; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="nebula"></div>
+
+    <div class="container">
+        <!-- Badge diubah menjadi merah (Error) -->
+        <div class="status-badge">🔴 Sinyal Hilang - Error 404</div>
+        
+        <h1>404<span>.</span></h1>
+        <h2>Satelit Keluar Orbit</h2>
+        
+        <p>Koordinat yang Anda tuju tidak ditemukan di sektor ini. Halaman mungkin telah tersedot ke lubang hitam atau bergeser dari orbitnya.</p>
+        
+        <!-- Tombol kembali diubah menjadi link biasa yang mengarah ke beranda -->
+        <a href="/" class="return-control" title="Kembali ke Base">
+            <div class="radar-icon">🛰️</div>
+            <div class="return-text">Kembali ke Mission Control</div>
+        </a>
+    </div>
+
+</body>
+</html>
