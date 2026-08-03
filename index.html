@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tutorial & Snippet Code</title>
+  
+  <!-- Font Modern (Plus Jakarta Sans & Fira Code) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS dengan Typography Plugin -->
+  <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+  <script>
+    tailwind.config = {
+      theme: { 
+        extend: { 
+          fontFamily: { 
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'], 
+            mono: ['"Fira Code"', 'monospace']
+          },
+          typography: {
+            DEFAULT: {
+              css: {
+                pre: { backgroundColor: '#1e293b', color: '#f8fafc', padding: '1.25rem', borderRadius: '0.75rem' },
+                code: { fontFamily: '"Fira Code", monospace' },
+                img: { borderRadius: '0.75rem', margin: 'auto' },
+                a: { color: '#2563eb', '&:hover': { color: '#1d4ed8' } }
+              }
+            }
+          }
+        } 
+      }
+    }
+  </script>
+  
+  <!-- DOMPurify untuk mencegah Serangan XSS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.6/purify.min.js"></script>
+  
+  <!-- Prism.js (Tema Besok Malam) untuk Highlight Kode -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+</head>
+<body class="bg-[#f8fafc] text-gray-800 antialiased selection:bg-blue-200">
+
+  <!-- Header -->
+  <header class="bg-white border-b border-gray-200">
+    <div class="max-w-4xl mx-auto py-8 px-6">
+      <h1 class="text-4xl font-bold text-slate-900 tracking-tight">Kumpulan Snippet & Tutorial</h1>
+      <p class="text-slate-500 mt-3 text-lg">Catatan development seputar Google Workspace, Code, & Automasi.</p>
+    </div>
+  </header>
+
+  <!-- Konten Artikel -->
+  <main class="max-w-4xl mx-auto py-12 px-6">
+    <div id="loading" class="flex flex-col items-center justify-center py-12 text-slate-500">
+      <svg class="animate-spin h-8 w-8 mb-4 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+      <p>Mengambil data artikel terbaru...</p>
+    </div>
+
+    <div id="posts-container" class="space-y-16 hidden"></div>
+  </main>
+
+  <!-- Script Prism & Logika Fetch -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+
+  <script>
+    // MASUKKAN URL WEB APP ANDA DI SINI
+    const GAS_API_URL = "https://script.google.com/macros/s/AKfycbyUmgv6BRAlyGQqIwhIXm_I3NPi3j50EUSE-fpSmRhVQ8HbgsXQlr4JRRW1M6lNDuEr6Q/exec?action=getPosts";
+
+    // Fungsi Format Tanggal
+    function formatDate(dateStr) {
+      const options = { year: 'numeric', month: 'long', day: 'numeric' };
+      return new Date(dateStr).toLocaleDateString('id-ID', options);
+    }
+
+    async function loadData() {
+      try {
+        const response = await fetch(GAS_API_URL);
+        const result = await response.json();
+        
+        const container = document.getElementById('posts-container');
+        const loading = document.getElementById('loading');
+        
+        loading.classList.add('hidden');
+        container.classList.remove('hidden');
+
+        if(result.success && result.data.length > 0) {
+          result.data.reverse().forEach(post => { // reverse agar terbaru di atas
+            // Membersihkan konten HTML agar aman dari XSS
+            const cleanHTML = DOMPurify.sanitize(post.content);
+
+            // Membuat array tag
+            const tagsHTML = post.tags.split(',')
+                .map(tag => `<span class="bg-blue-50 text-blue-600 px-3 py-1 text-xs font-semibold rounded-full border border-blue-100">${tag.trim()}</span>`)
+                .join('');
+
+            const article = `
+              <article class="bg-white p-8 md:p-10 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                <div class="flex gap-2 mb-4">
+                  ${tagsHTML}
+                </div>
+                <h2 class="text-3xl font-bold mb-3 text-slate-800 leading-tight">
+                  <a href="#${post.slug}" class="hover:text-blue-600 transition-colors">${post.title}</a>
+                </h2>
+                <div class="text-sm text-slate-400 mb-8 font-medium">
+                  Dipublikasikan pada ${formatDate(post.date)}
+                </div>
+                
+                <!-- Tailwind Typography 'prose' -->
+                <div class="prose prose-slate prose-lg max-w-none prose-img:shadow-lg prose-pre:border prose-pre:border-gray-700">
+                  ${cleanHTML}
+                </div>
+              </article>
+            `;
+            container.insertAdjacentHTML('beforeend', article);
+          });
+          
+          // Trigger PrismJS untuk mewarnai snippet code
+          Prism.highlightAll();
+        } else {
+          container.innerHTML = '<p class="text-slate-500 text-center">Belum ada artikel yang dipublikasikan.</p>';
+        }
+      } catch (e) {
+        document.getElementById('loading').classList.add('hidden');
+        document.getElementById('posts-container').classList.remove('hidden');
+        document.getElementById('posts-container').innerHTML = `
+          <div class="bg-red-50 border border-red-200 text-red-600 p-6 rounded-xl text-center">
+            <p class="font-bold">Gagal memuat data.</p>
+            <p class="text-sm mt-2">Pastikan URL API Google Apps Script sudah benar dan status file Spreadsheet tidak diprivate.</p>
+          </div>`;
+      }
+    }
+
+    // Jalankan fungsi
+    loadData();
+  </script>
+</body>
+</html>
