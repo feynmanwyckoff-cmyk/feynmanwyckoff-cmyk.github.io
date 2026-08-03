@@ -3,15 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Developer Notes & Snippets</title>
+  <title>DevNotes - Developer Blog</title>
   
-  <!-- Favicon transparan untuk mencegah error -->
   <link rel="icon" href="data:;base64,iVBORw0KGgo=">
 
-  <!-- Google Fonts: Inter (UI), Lora (Reading), JetBrains Mono (Code) -->
+  <!-- Google Fonts: Inter (UI & Headings), Lora (Reading Body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
   
   <!-- Tailwind CSS & Typography Plugin -->
   <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
@@ -28,18 +27,19 @@
             DEFAULT: {
               css: {
                 fontFamily: 'Lora, serif',
-                color: '#334155', // slate-700
-                lineHeight: '1.8',
-                h1: { fontFamily: 'Inter, sans-serif', color: '#0f172a', fontWeight: '700', letterSpacing: '-0.025em' },
-                h2: { fontFamily: 'Inter, sans-serif', color: '#0f172a', fontWeight: '700', letterSpacing: '-0.025em', marginTop: '2em' },
-                h3: { fontFamily: 'Inter, sans-serif', color: '#1e293b', fontWeight: '600' },
-                p: { marginTop: '1.25em', marginBottom: '1.25em' },
-                pre: { backgroundColor: '#0f172a', color: '#e2e8f0', padding: '1.25rem', borderRadius: '0.5rem', border: '1px solid #1e293b', fontSize: '0.875em' },
-                code: { fontFamily: '"JetBrains Mono", monospace', color: '#0284c7', backgroundColor: '#f0f9ff', padding: '0.2em 0.4em', borderRadius: '0.25rem', fontWeight: '500', fontSize: '0.875em' },
+                color: '#242424', // Medium dark gray
+                lineHeight: '2',
+                fontSize: '1.125rem',
+                h1: { fontFamily: 'Inter, sans-serif', fontWeight: '800', letterSpacing: '-0.03em', color: '#000' },
+                h2: { fontFamily: 'Inter, sans-serif', fontWeight: '700', letterSpacing: '-0.02em', marginTop: '2em', color: '#000' },
+                h3: { fontFamily: 'Inter, sans-serif', fontWeight: '600' },
+                pre: { backgroundColor: '#f9fafb', color: '#242424', padding: '1.25rem', borderRadius: '4px', border: '1px solid #e5e7eb', fontSize: '0.875rem' },
+                code: { fontFamily: '"JetBrains Mono", monospace', fontWeight: '500', color: '#c026d3', backgroundColor: '#fdf4ff', padding: '0.2rem 0.4rem', borderRadius: '4px' },
                 'code::before': { content: '""' },
                 'code::after': { content: '""' },
-                a: { color: '#2563eb', textDecoration: 'none', fontWeight: '500', transition: 'color 0.2s', '&:hover': { color: '#1e40af' } },
-                blockquote: { borderLeftWidth: '4px', borderLeftColor: '#cbd5e1', fontStyle: 'italic', color: '#64748b', paddingLeft: '1.25rem', margin: '1.5rem 0' }
+                a: { color: '#000', textDecoration: 'underline', textUnderlineOffset: '4px', decorationThickness: '1px', '&:hover': { color: '#6b7280' } },
+                img: { margin: '2rem auto', borderRadius: '4px' },
+                blockquote: { borderLeftWidth: '3px', borderLeftColor: '#000', fontStyle: 'italic', paddingLeft: '1.25rem' }
               }
             }
           })
@@ -48,159 +48,295 @@
     }
   </script>
   
-  <!-- DOMPurify (Security) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.6/purify.min.js"></script>
-  
-  <!-- Prism.js CSS (Tema Okaidia untuk kontras yang elegan) -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet" />
+  <!-- Prism.js Tema Light -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
 </head>
-<body class="bg-white text-slate-900 antialiased font-sans selection:bg-blue-100 selection:text-blue-900">
+<body class="bg-white text-gray-900 antialiased font-sans selection:bg-gray-200 selection:text-black">
 
-  <!-- Navbar -->
-  <nav class="border-b border-slate-100">
-    <div class="max-w-4xl mx-auto py-5 px-6 flex justify-between items-center">
-      <a href="/" class="text-xl font-bold tracking-tight text-slate-900 flex items-center gap-2">
-        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
-        DevNotes<span class="text-blue-600">.</span>
+  <!-- Global Header (Ala Medium) -->
+  <header class="border-b border-gray-200 sticky top-0 bg-white z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="#" onclick="window.location.hash=''; return false;" class="flex items-center gap-2">
+        <div class="w-8 h-8 bg-black text-white flex items-center justify-center font-serif font-bold text-xl rounded-full">D</div>
+        <span class="font-bold text-xl tracking-tight">DevNotes</span>
       </a>
-      <div class="hidden sm:flex space-x-6 text-sm font-medium text-slate-500">
-        <a href="#" class="hover:text-slate-900 transition-colors">Articles</a>
-        <a href="#" class="hover:text-slate-900 transition-colors">Snippets</a>
-        <a href="#" class="hover:text-slate-900 transition-colors">Projects</a>
+      <div class="flex items-center gap-4 text-sm font-medium text-gray-500">
+        <a href="#" class="hover:text-black transition-colors hidden sm:block">Our story</a>
+        <a href="#" class="hover:text-black transition-colors hidden sm:block">Write</a>
+        <a href="#" class="text-black bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-full transition-colors">Sign In</a>
       </div>
     </div>
-  </nav>
-
-  <!-- Header Section -->
-  <header class="max-w-4xl mx-auto pt-16 pb-12 px-6">
-    <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-slate-900 mb-4">Catatan & Eksplorasi Kode.</h1>
-    <p class="text-lg text-slate-500 max-w-2xl leading-relaxed font-serif">Kumpulan artikel teknis, snippet kode, dan penyelesaian masalah seputar automasi, Google Workspace, dan pengembangan web.</p>
   </header>
 
-  <!-- Konten Utama -->
-  <main class="max-w-4xl mx-auto pb-24 px-6 border-t border-slate-100 pt-12">
-    
-    <!-- Skeleton Loader (Animasi Loading Profesional) -->
-    <div id="loading" class="space-y-16">
-      <!-- Skeleton Item 1 -->
-      <div class="animate-pulse">
-        <div class="flex gap-2 mb-4"><div class="h-5 w-20 bg-slate-100 rounded"></div></div>
-        <div class="h-8 w-3/4 bg-slate-100 rounded mb-4"></div>
-        <div class="h-4 w-40 bg-slate-100 rounded mb-8"></div>
-        <div class="space-y-3"><div class="h-4 bg-slate-50 rounded"></div><div class="h-4 bg-slate-50 rounded w-5/6"></div><div class="h-4 bg-slate-50 rounded w-4/6"></div></div>
-      </div>
-      <!-- Skeleton Item 2 -->
-      <div class="animate-pulse">
-        <div class="flex gap-2 mb-4"><div class="h-5 w-24 bg-slate-100 rounded"></div></div>
-        <div class="h-8 w-2/3 bg-slate-100 rounded mb-4"></div>
-        <div class="h-4 w-32 bg-slate-100 rounded mb-8"></div>
-        <div class="space-y-3"><div class="h-4 bg-slate-50 rounded"></div><div class="h-4 bg-slate-50 rounded w-full"></div><div class="h-4 bg-slate-50 rounded w-3/4"></div></div>
+  <!-- VIEW 1: HOME FEED (Daftar Artikel) -->
+  <div id="home-view" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <!-- Header Feed -->
+    <div class="mb-12 border-b border-gray-200 pb-8">
+      <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-black mb-4">Stay curious.</h1>
+      <p class="text-xl text-gray-600 font-serif max-w-2xl">Temukan panduan, snippet kode, dan wawasan terbaru seputar pengembangan web dan automasi sistem.</p>
+    </div>
+
+    <!-- Grid Kartu Artikel -->
+    <div id="posts-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
+      <!-- Loading Skeleton (Medium style) -->
+      <div class="animate-pulse flex flex-col space-y-4">
+        <div class="h-48 bg-gray-200 rounded w-full"></div>
+        <div class="flex items-center space-x-2"><div class="w-6 h-6 bg-gray-200 rounded-full"></div><div class="h-3 bg-gray-200 rounded w-24"></div></div>
+        <div class="h-6 bg-gray-200 rounded w-3/4"></div>
+        <div class="h-4 bg-gray-200 rounded w-full"></div><div class="h-4 bg-gray-200 rounded w-5/6"></div>
       </div>
     </div>
 
-    <!-- Container Artikel -->
-    <div id="posts-container" class="space-y-20 hidden"></div>
-  </main>
+    <!-- Pagination Controls -->
+    <div id="pagination-controls" class="hidden flex items-center justify-between border-t border-gray-200 mt-16 pt-8">
+      <button id="btn-prev" class="flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-black disabled:opacity-50 disabled:cursor-not-allowed">
+        &larr; Previous
+      </button>
+      <span id="page-info" class="text-sm text-gray-500 font-medium">Page 1</span>
+      <button id="btn-next" class="flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-black disabled:opacity-50 disabled:cursor-not-allowed">
+        Next &rarr;
+      </button>
+    </div>
+  </div>
+
+  <!-- VIEW 2: ARTICLE DETAIL (Mode Baca) -->
+  <div id="article-view" class="hidden max-w-3xl mx-auto px-4 sm:px-6 py-12">
+    <button onclick="window.location.hash=''" class="mb-8 flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-black transition-colors">
+      &larr; Back to feed
+    </button>
+    
+    <div id="article-content"></div>
+  </div>
 
   <!-- Footer -->
-  <footer class="border-t border-slate-100 py-10 text-center">
-    <p class="text-sm text-slate-400 font-medium">&copy; 2026 DevNotes. Hosted on GitHub Pages, powered by GAS.</p>
+  <footer class="border-t border-gray-200 py-8 text-center mt-12">
+    <p class="text-sm text-gray-500 font-medium">&copy; 2026 DevNotes. Hosted on GitHub Pages, powered by GAS.</p>
   </footer>
 
-  <!-- Script Prism -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
 
   <script>
-    // URL API GAS Kamu (Sudah dikonfigurasi)
+    // ⚠️ MASUKKAN URL GAS KAMU DI BAWAH INI (Pastikan diakhiri ?action=getPosts)
     const GAS_API_URL = "https://script.google.com/macros/s/AKfycbyUmgv6BRAlyGQqIwhIXm_I3NPi3j50EUSE-fpSmRhVQ8HbgsXQlr4JRRW1M6lNDuEr6Q/exec?action=getPosts";
 
-    // Fungsi format tanggal yang rapi
+    // Variabel Global
+    let allPosts = [];
+    let currentPage = 1;
+    const postsPerPage = 6;
+
+    // Elemen DOM
+    const homeView = document.getElementById('home-view');
+    const articleView = document.getElementById('article-view');
+    const postsGrid = document.getElementById('posts-grid');
+    const articleContent = document.getElementById('article-content');
+    const btnPrev = document.getElementById('btn-prev');
+    const btnNext = document.getElementById('btn-next');
+    const pageInfo = document.getElementById('page-info');
+    const paginationControls = document.getElementById('pagination-controls');
+
+    // Utility Functions
     function formatDate(dateStr) {
-      const options = { year: 'numeric', month: 'long', day: 'numeric' };
-      return new Date(dateStr).toLocaleDateString('id-ID', options);
+      return new Date(dateStr).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
     }
-
-    // Fungsi perkiraan waktu baca (opsional & profesional)
+    
     function getReadingTime(text) {
-      const wordsPerMinute = 200;
-      const noOfWords = text.split(/\s/g).length;
-      const minutes = noOfWords / wordsPerMinute;
-      const readTime = Math.ceil(minutes);
-      return `${readTime} min read`;
+      const words = text.split(/\s/g).length;
+      return `${Math.ceil(words / 200)} min read`;
     }
 
-    async function loadData() {
+    // Ekstrak gambar pertama dari HTML untuk dijadikan Thumbnail
+    function extractThumbnail(htmlContent) {
+      const imgRegex = /<img[^>]+src="([^">]+)"/i;
+      const match = htmlContent.match(imgRegex);
+      if (match) {
+        // Fix untuk URL Google Drive
+        return match[1].replace(/https:\/\/drive\.google\.com\/uc\?export=view(?:&amp;|&)id=([a-zA-Z0-9_-]+)/g, 'https://lh3.googleusercontent.com/d/$1');
+      }
+      return null;
+    }
+
+    // Menghapus HTML tag untuk membuat cuplikan teks (Excerpt)
+    function stripHtmlToText(html) {
+      const tmp = document.createElement("DIV");
+      tmp.innerHTML = html;
+      return tmp.textContent || tmp.innerText || "";
+    }
+
+    // FUNGSI UTAMA: MENGAMBIL DATA DARI GAS
+    async function fetchData() {
       try {
         const response = await fetch(GAS_API_URL);
         const result = await response.json();
         
-        const container = document.getElementById('posts-container');
-        const loading = document.getElementById('loading');
-        
-        // Hapus loading
-        loading.classList.add('hidden');
-        container.classList.remove('hidden');
-
-        if(result.success && result.data.length > 0) {
-          result.data.reverse().forEach(post => {
-            const cleanHTML = DOMPurify.sanitize(post.content);
-            const readTime = getReadingTime(post.content);
-
-            // Styling Tag yang sangat clean
-            const tagsHTML = post.tags.split(',')
-                .map(tag => `<span class="text-xs font-semibold text-blue-600 bg-blue-50/50 hover:bg-blue-100 transition-colors px-2.5 py-1 rounded-full uppercase tracking-wider">${tag.trim()}</span>`)
-                .join(' ');
-
-            const article = `
-              <article class="group">
-                <div class="flex flex-wrap gap-2 mb-4">
-                  ${tagsHTML}
-                </div>
-                
-                <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-slate-900 tracking-tight leading-tight">
-                  <a href="#${post.slug}" class="hover:text-blue-600 transition-colors decoration-2 underline-offset-4">${post.title}</a>
-                </h2>
-                
-                <div class="text-sm text-slate-500 mb-8 flex items-center gap-3 font-medium">
-                  <time>${formatDate(post.date)}</time>
-                  <span class="w-1 h-1 rounded-full bg-slate-300"></span>
-                  <span>${readTime}</span>
-                </div>
-                
-                <!-- Konten dengan Tailwind Typography (Prose) -->
-                <div class="prose prose-lg max-w-none">
-                  ${cleanHTML}
-                </div>
-              </article>
-            `;
-            container.insertAdjacentHTML('beforeend', article);
-          });
+        if (result.success && result.data.length > 0) {
+          allPosts = result.data.reverse(); // Terbaru di atas
           
-          // Render sintaks kode
-          Prism.highlightAll();
+          // Fix semua URL gambar Drive di konten sebelum disimpan
+          allPosts.forEach(post => {
+            post.content = post.content.replace(/https:\/\/drive\.google\.com\/uc\?export=view(?:&amp;|&)id=([a-zA-Z0-9_-]+)/g, 'https://lh3.googleusercontent.com/d/$1');
+            post.cleanHTML = DOMPurify.sanitize(post.content);
+            post.thumbnail = extractThumbnail(post.cleanHTML);
+            post.excerpt = stripHtmlToText(post.cleanHTML);
+          });
+
+          handleRouting(); // Render sesuai URL saat ini
         } else {
-          container.innerHTML = `
-            <div class="text-center py-20">
-              <p class="text-slate-500 text-lg font-serif italic">Belum ada artikel yang dipublikasikan.</p>
-            </div>`;
+          postsGrid.innerHTML = `<p class="col-span-full text-center text-gray-500 py-10">Belum ada artikel yang dipublikasikan.</p>`;
         }
       } catch (e) {
-        console.error(e);
-        document.getElementById('loading').classList.add('hidden');
-        document.getElementById('posts-container').classList.remove('hidden');
-        document.getElementById('posts-container').innerHTML = `
-          <div class="bg-red-50 border-l-4 border-red-500 p-6 rounded text-red-900">
-            <h3 class="font-bold font-sans text-lg mb-1">Koneksi Terputus</h3>
-            <p class="text-red-700 text-sm">Gagal mengambil data dari server. Pastikan API URL sudah diperbarui dengan deployment terbaru.</p>
-          </div>`;
+        postsGrid.innerHTML = `<p class="col-span-full text-center text-red-500 py-10">Gagal memuat data dari server.</p>`;
       }
     }
 
-    // Eksekusi pemanggilan data
-    loadData();
+    // FUNGSI RENDER: Menampilkan daftar artikel (PAGINATION)
+    function renderHome() {
+      homeView.classList.remove('hidden');
+      articleView.classList.add('hidden');
+      
+      const startIndex = (currentPage - 1) * postsPerPage;
+      const endIndex = startIndex + postsPerPage;
+      const currentPosts = allPosts.slice(startIndex, endIndex);
+
+      postsGrid.innerHTML = ''; // Bersihkan kontainer
+      window.scrollTo(0, 0); // Scroll ke atas
+
+      currentPosts.forEach(post => {
+        // Jika tidak ada gambar, gunakan placeholder warna pastel
+        const bgColors = ['bg-amber-100', 'bg-blue-100', 'bg-emerald-100', 'bg-rose-100', 'bg-purple-100'];
+        const randomBg = bgColors[Math.floor(Math.random() * bgColors.length)];
+        const imageElement = post.thumbnail 
+          ? `<img src="${post.thumbnail}" alt="${post.title}" class="w-full h-48 object-cover">`
+          : `<div class="w-full h-48 ${randomBg} flex items-center justify-center text-gray-400 font-serif italic">No image</div>`;
+
+        const card = `
+          <div class="flex flex-col group cursor-pointer" onclick="window.location.hash='${post.slug}'">
+            <!-- Thumbnail -->
+            <div class="w-full h-48 mb-4 overflow-hidden rounded bg-gray-100">
+               ${imageElement}
+            </div>
+            
+            <!-- Author Info -->
+            <div class="flex items-center gap-2 mb-3">
+              <div class="w-5 h-5 rounded-full bg-gray-800 text-white flex items-center justify-center text-[10px] font-bold">D</div>
+              <span class="text-xs font-medium text-gray-900">DevNotes Admin <span class="text-gray-400 font-normal ml-1">· ${formatDate(post.date)}</span></span>
+            </div>
+            
+            <!-- Title -->
+            <h2 class="text-xl font-bold text-black leading-tight mb-2 group-hover:underline decoration-2 underline-offset-4 line-clamp-2">
+              ${post.title}
+            </h2>
+            
+            <!-- Excerpt -->
+            <p class="text-sm text-gray-600 font-serif leading-relaxed line-clamp-2 mb-4 flex-grow">
+              ${post.excerpt}
+            </p>
+            
+            <!-- Footer (Claps & Comments UI) -->
+            <div class="flex items-center justify-between text-gray-400 text-xs mt-auto pt-4">
+              <div class="flex items-center gap-4">
+                <span class="flex items-center gap-1 hover:text-black transition-colors"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.514"></path></svg> ${(Math.random() * 100).toFixed(0)}</span>
+                <span class="flex items-center gap-1 hover:text-black transition-colors"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg></span>
+              </div>
+              <span>${getReadingTime(post.excerpt)}</span>
+            </div>
+          </div>
+        `;
+        postsGrid.insertAdjacentHTML('beforeend', card);
+      });
+
+      updatePaginationUI();
+    }
+
+    // FUNGSI RENDER: Menampilkan Detail Artikel
+    function renderArticle(slug) {
+      const post = allPosts.find(p => p.slug === slug);
+      if (!post) {
+        window.location.hash = ''; // Kembali ke home jika tidak ditemukan
+        return;
+      }
+
+      homeView.classList.add('hidden');
+      articleView.classList.remove('hidden');
+      window.scrollTo(0, 0);
+
+      const tagsHTML = post.tags.split(',')
+          .map(tag => `<span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs font-medium hover:bg-gray-200 transition-colors">${tag.trim()}</span>`)
+          .join(' ');
+
+      articleContent.innerHTML = `
+        <div class="mb-10">
+          <h1 class="text-4xl sm:text-5xl font-extrabold text-black mb-6 leading-tight tracking-tight">${post.title}</h1>
+          
+          <div class="flex items-center gap-4 mb-8">
+            <div class="w-12 h-12 rounded-full bg-black text-white flex items-center justify-center font-bold font-serif text-xl">D</div>
+            <div>
+              <div class="font-medium text-black">DevNotes Admin</div>
+              <div class="text-sm text-gray-500">${getReadingTime(post.content)} · ${formatDate(post.date)}</div>
+            </div>
+          </div>
+          
+          <div class="border-y border-gray-200 py-3 mb-10 flex items-center gap-6 text-gray-500">
+             <span class="flex items-center gap-2 cursor-pointer hover:text-black"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.514"></path></svg></span>
+             <span class="flex items-center gap-2 cursor-pointer hover:text-black"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg></span>
+          </div>
+        </div>
+        
+        <div class="prose prose-lg md:prose-xl max-w-none mb-12">
+          ${post.cleanHTML}
+        </div>
+        
+        <div class="flex flex-wrap gap-2 mt-8 border-t border-gray-200 pt-8">
+          ${tagsHTML}
+        </div>
+      `;
+
+      // Render sintaks Prism setelah HTML dimuat
+      Prism.highlightAll();
+    }
+
+    // LOGIKA PAGINATION
+    function updatePaginationUI() {
+      const totalPages = Math.ceil(allPosts.length / postsPerPage);
+      
+      if (allPosts.length > postsPerPage) {
+        paginationControls.classList.remove('hidden');
+        pageInfo.innerText = `Page ${currentPage} of ${totalPages}`;
+        
+        btnPrev.disabled = currentPage === 1;
+        btnNext.disabled = currentPage === totalPages;
+      } else {
+        paginationControls.classList.add('hidden');
+      }
+    }
+
+    btnPrev.addEventListener('click', () => {
+      if (currentPage > 1) { currentPage--; renderHome(); }
+    });
+
+    btnNext.addEventListener('click', () => {
+      const totalPages = Math.ceil(allPosts.length / postsPerPage);
+      if (currentPage < totalPages) { currentPage++; renderHome(); }
+    });
+
+    // LOGIKA ROUTING (URL HASH)
+    function handleRouting() {
+      const hash = window.location.hash.replace('#', '');
+      if (hash) {
+        renderArticle(hash);
+      } else {
+        renderHome();
+      }
+    }
+
+    // Pantau perubahan URL (saat user klik back/forward di browser)
+    window.addEventListener('hashchange', handleRouting);
+
+    // Jalankan aplikasi
+    fetchData();
   </script>
 </body>
 </html>
