@@ -1,21 +1,22 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DevNotes - Developer Blog</title>
+  <title>Fayadh Notes - Jurnal Eksplorasi & Analisis</title>
   
   <link rel="icon" href="data:;base64,iVBORw0KGgo=">
 
-  <!-- Google Fonts: Inter (UI & Headings), Lora (Reading Body) -->
+  <!-- Google Fonts: Inter (UI), Lora (Reading) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
   
-  <!-- Tailwind CSS & Typography Plugin -->
+  <!-- Tailwind CSS & Typography -->
   <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
   <script>
     tailwind.config = {
+      darkMode: 'class',
       theme: { 
         extend: { 
           fontFamily: { 
@@ -27,19 +28,16 @@
             DEFAULT: {
               css: {
                 fontFamily: 'Lora, serif',
-                color: '#242424', // Medium dark gray
                 lineHeight: '2',
-                fontSize: '1.125rem',
-                h1: { fontFamily: 'Inter, sans-serif', fontWeight: '800', letterSpacing: '-0.03em', color: '#000' },
-                h2: { fontFamily: 'Inter, sans-serif', fontWeight: '700', letterSpacing: '-0.02em', marginTop: '2em', color: '#000' },
+                h1: { fontFamily: 'Inter, sans-serif', fontWeight: '800', letterSpacing: '-0.03em' },
+                h2: { fontFamily: 'Inter, sans-serif', fontWeight: '700', letterSpacing: '-0.02em', marginTop: '2em' },
                 h3: { fontFamily: 'Inter, sans-serif', fontWeight: '600' },
-                pre: { backgroundColor: '#f9fafb', color: '#242424', padding: '1.25rem', borderRadius: '4px', border: '1px solid #e5e7eb', fontSize: '0.875rem' },
-                code: { fontFamily: '"JetBrains Mono", monospace', fontWeight: '500', color: '#c026d3', backgroundColor: '#fdf4ff', padding: '0.2rem 0.4rem', borderRadius: '4px' },
+                pre: { backgroundColor: '#111827', color: '#f3f4f6', padding: '1.25rem', borderRadius: '8px', fontSize: '0.875rem' },
+                code: { fontFamily: '"JetBrains Mono", monospace', fontWeight: '500' },
                 'code::before': { content: '""' },
                 'code::after': { content: '""' },
-                a: { color: '#000', textDecoration: 'underline', textUnderlineOffset: '4px', decorationThickness: '1px', '&:hover': { color: '#6b7280' } },
-                img: { margin: '2rem auto', borderRadius: '4px' },
-                blockquote: { borderLeftWidth: '3px', borderLeftColor: '#000', fontStyle: 'italic', paddingLeft: '1.25rem' }
+                img: { borderRadius: '8px', margin: '2rem auto' },
+                blockquote: { borderLeftWidth: '3px', fontStyle: 'italic', paddingLeft: '1.25rem' }
               }
             }
           })
@@ -49,98 +47,180 @@
   </script>
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.6/purify.min.js"></script>
-  <!-- Prism.js Tema Light -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
-</head>
-<body class="bg-white text-gray-900 antialiased font-sans selection:bg-gray-200 selection:text-black">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
 
-  <!-- Global Header (Ala Medium) -->
-  <header class="border-b border-gray-200 sticky top-0 bg-white z-50">
+  <style>
+    /* Custom Scrollbar Hiding for Slider */
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    
+    /* Highlight styling for search matches (optional tweak) */
+    .highlight { background-color: #fef08a; color: #000; }
+  </style>
+</head>
+<body class="bg-white text-gray-900 dark:bg-[#0f172a] dark:text-gray-100 antialiased font-sans transition-colors duration-300 selection:bg-blue-200 selection:text-black dark:selection:bg-blue-900 dark:selection:text-white">
+
+  <!-- Global Header -->
+  <header class="border-b border-gray-200 dark:border-gray-800 sticky top-0 bg-white/80 dark:bg-[#0f172a]/80 backdrop-blur-md z-50 transition-colors duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-      <a href="#" onclick="window.location.hash=''; return false;" class="flex items-center gap-2">
-        <div class="w-8 h-8 bg-black text-white flex items-center justify-center font-serif font-bold text-xl rounded-full">D</div>
-        <span class="font-bold text-xl tracking-tight">DevNotes</span>
+      
+      <!-- Brand / Logo -->
+      <a href="#" onclick="window.location.hash=''; return false;" class="flex items-center gap-3 group">
+        <div class="w-8 h-8 bg-black dark:bg-white text-white dark:text-black flex items-center justify-center font-serif font-bold text-xl rounded-full transition-transform group-hover:scale-105">F</div>
+        <span class="font-bold text-xl tracking-tight hidden sm:block">Fayadh Notes</span>
       </a>
-      <div class="flex items-center gap-4 text-sm font-medium text-gray-500">
-        <a href="#" class="hover:text-black transition-colors hidden sm:block">Our story</a>
-        <a href="#" class="hover:text-black transition-colors hidden sm:block">Write</a>
-        <a href="#" class="text-black bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-full transition-colors">Sign In</a>
+
+      <!-- Dummy Menu & Search -->
+      <div class="flex items-center gap-4 sm:gap-6">
+        <nav class="hidden md:flex gap-6 text-sm font-medium text-gray-500 dark:text-gray-400">
+          <a href="#" class="hover:text-black dark:hover:text-white transition-colors">Tech & GAS</a>
+          <a href="#" class="hover:text-black dark:hover:text-white transition-colors">IHSG Market</a>
+          <a href="#" class="hover:text-black dark:hover:text-white transition-colors">US Stocks</a>
+          <a href="#" class="hover:text-black dark:hover:text-white transition-colors">Journal</a>
+        </nav>
+
+        <!-- Search Bar -->
+        <div class="relative hidden sm:block">
+          <svg class="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+          <input type="text" id="search-input" placeholder="Search notes..." class="pl-9 pr-4 py-1.5 bg-gray-100 dark:bg-gray-800 border-none rounded-full text-sm focus:ring-2 focus:ring-gray-300 dark:focus:ring-gray-600 outline-none w-48 transition-all dark:text-white placeholder-gray-500">
+        </div>
+
+        <!-- Dark/Light Toggle -->
+        <button id="theme-toggle" class="p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors focus:outline-none">
+          <svg id="theme-toggle-dark-icon" class="hidden w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+          <svg id="theme-toggle-light-icon" class="hidden w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+        </button>
       </div>
     </div>
   </header>
 
-  <!-- VIEW 1: HOME FEED (Daftar Artikel) -->
-  <div id="home-view" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <!-- Header Feed -->
-    <div class="mb-12 border-b border-gray-200 pb-8">
-      <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-black mb-4">Stay curious.</h1>
-      <p class="text-xl text-gray-600 font-serif max-w-2xl">Temukan panduan, snippet kode, dan wawasan terbaru seputar pengembangan web dan automasi sistem.</p>
+  <!-- VIEW 1: HOME FEED (Slider Artikel) -->
+  <div id="home-view" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    
+    <!-- Hero Section -->
+    <div class="mb-16 max-w-3xl">
+      <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight text-black dark:text-white mb-6">Stay curious.</h1>
+      <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-400 font-serif leading-relaxed">
+        Ruang eksplorasi dan dokumentasi. Membahas tutorial <span class="text-black dark:text-white font-medium">Project GAS Webapp</span>, analisa fundamental <span class="text-black dark:text-white font-medium">Market IHSG</span>, tesis investasi <span class="text-black dark:text-white font-medium">US Stock Market</span>, dan perjalanan belajar lainnya.
+      </p>
     </div>
 
-    <!-- Grid Kartu Artikel -->
-    <div id="posts-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
-      <!-- Loading Skeleton (Medium style) -->
-      <div class="animate-pulse flex flex-col space-y-4">
-        <div class="h-48 bg-gray-200 rounded w-full"></div>
-        <div class="flex items-center space-x-2"><div class="w-6 h-6 bg-gray-200 rounded-full"></div><div class="h-3 bg-gray-200 rounded w-24"></div></div>
-        <div class="h-6 bg-gray-200 rounded w-3/4"></div>
-        <div class="h-4 bg-gray-200 rounded w-full"></div><div class="h-4 bg-gray-200 rounded w-5/6"></div>
+    <!-- Header Slider & Kontrol -->
+    <div class="flex items-center justify-between mb-8">
+      <h2 class="text-xl font-bold tracking-tight">Terbaru di Fayadh Notes</h2>
+      <div class="flex gap-2">
+        <button onclick="scrollSlider(-1)" class="w-10 h-10 rounded-full border border-gray-300 dark:border-gray-700 flex items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+        </button>
+        <button onclick="scrollSlider(1)" class="w-10 h-10 rounded-full border border-gray-300 dark:border-gray-700 flex items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </button>
       </div>
     </div>
 
-    <!-- Pagination Controls -->
-    <div id="pagination-controls" class="hidden flex items-center justify-between border-t border-gray-200 mt-16 pt-8">
-      <button id="btn-prev" class="flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-black disabled:opacity-50 disabled:cursor-not-allowed">
-        &larr; Previous
-      </button>
-      <span id="page-info" class="text-sm text-gray-500 font-medium">Page 1</span>
-      <button id="btn-next" class="flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-black disabled:opacity-50 disabled:cursor-not-allowed">
-        Next &rarr;
-      </button>
-    </div>
+    <!-- Container Utama: Slider Interaktif -->
+    <div id="posts-slider" class="flex gap-8 overflow-x-auto pb-10 hide-scrollbar snap-x snap-mandatory scroll-smooth">
+      
+      <!-- Skeleton Loader (Muncul saat loading) -->
+      <div id="loading" class="flex gap-8 w-full">
+        <!-- Card 1 -->
+        <div class="animate-pulse min-w-[320px] md:min-w-[400px] flex-shrink-0">
+          <div class="h-56 bg-gray-200 dark:bg-gray-800 rounded-xl w-full mb-4"></div>
+          <div class="h-6 bg-gray-200 dark:bg-gray-800 rounded w-3/4 mb-3"></div>
+          <div class="h-4 bg-gray-200 dark:bg-gray-800 rounded w-full mb-2"></div>
+          <div class="h-4 bg-gray-200 dark:bg-gray-800 rounded w-5/6"></div>
+        </div>
+        <!-- Card 2 -->
+        <div class="animate-pulse min-w-[320px] md:min-w-[400px] flex-shrink-0">
+          <div class="h-56 bg-gray-200 dark:bg-gray-800 rounded-xl w-full mb-4"></div>
+          <div class="h-6 bg-gray-200 dark:bg-gray-800 rounded w-2/3 mb-3"></div>
+          <div class="h-4 bg-gray-200 dark:bg-gray-800 rounded w-full mb-2"></div>
+          <div class="h-4 bg-gray-200 dark:bg-gray-800 rounded w-4/5"></div>
+        </div>
+      </div>
+      
+    </div> <!-- End Slider -->
   </div>
 
   <!-- VIEW 2: ARTICLE DETAIL (Mode Baca) -->
-  <div id="article-view" class="hidden max-w-3xl mx-auto px-4 sm:px-6 py-12">
-    <button onclick="window.location.hash=''" class="mb-8 flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-black transition-colors">
-      &larr; Back to feed
+  <div id="article-view" class="hidden max-w-3xl mx-auto px-4 sm:px-6 py-16">
+    <button onclick="window.location.hash=''" class="mb-10 flex items-center gap-2 text-sm font-semibold text-gray-500 hover:text-black dark:hover:text-white transition-colors">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+      Kembali ke Beranda
     </button>
     
     <div id="article-content"></div>
   </div>
 
-  <!-- Footer -->
-  <footer class="border-t border-gray-200 py-8 text-center mt-12">
-    <p class="text-sm text-gray-500 font-medium">&copy; 2026 DevNotes. Hosted on GitHub Pages, powered by GAS.</p>
+  <!-- Footer Profesional -->
+  <footer class="border-t border-gray-200 dark:border-gray-800 py-10 mt-16 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+      <div class="flex items-center gap-2">
+        <div class="w-6 h-6 bg-black dark:bg-white text-white dark:text-black flex items-center justify-center font-serif font-bold text-xs rounded-full">F</div>
+        <span class="font-bold tracking-tight">Fayadh Notes</span>
+      </div>
+      <p class="text-sm text-gray-500 dark:text-gray-400 font-medium">
+        &copy; 2026 Fayadh Notes. All rights reserved.
+      </p>
+      <div class="flex gap-4 text-sm text-gray-500 dark:text-gray-400">
+        <a href="#" class="hover:text-black dark:hover:text-white">Privacy</a>
+        <a href="#" class="hover:text-black dark:hover:text-white">Terms</a>
+        <a href="#" class="hover:text-black dark:hover:text-white">Contact</a>
+      </div>
+    </div>
   </footer>
 
+  <!-- Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
 
   <script>
-    // ⚠️ MASUKKAN URL GAS KAMU DI BAWAH INI (Pastikan diakhiri ?action=getPosts)
+    // ⚠️ MASUKKAN URL GAS KAMU DI SINI
     const GAS_API_URL = "https://script.google.com/macros/s/AKfycbyUmgv6BRAlyGQqIwhIXm_I3NPi3j50EUSE-fpSmRhVQ8HbgsXQlr4JRRW1M6lNDuEr6Q/exec?action=getPosts";
 
-    // Variabel Global
-    let allPosts = [];
-    let currentPage = 1;
-    const postsPerPage = 6;
+    // --- DARK MODE LOGIC ---
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const darkIcon = document.getElementById('theme-toggle-dark-icon');
+    const lightIcon = document.getElementById('theme-toggle-light-icon');
 
-    // Elemen DOM
+    function updateIcons() {
+      if (document.documentElement.classList.contains('dark')) {
+        lightIcon.classList.remove('hidden'); darkIcon.classList.add('hidden');
+      } else {
+        darkIcon.classList.remove('hidden'); lightIcon.classList.add('hidden');
+      }
+    }
+
+    if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+    updateIcons();
+
+    themeToggleBtn.addEventListener('click', function() {
+      document.documentElement.classList.toggle('dark');
+      if (document.documentElement.classList.contains('dark')) {
+        localStorage.setItem('color-theme', 'dark');
+      } else {
+        localStorage.setItem('color-theme', 'light');
+      }
+      updateIcons();
+    });
+
+    // --- APP LOGIC ---
+    let allPosts = [];
     const homeView = document.getElementById('home-view');
     const articleView = document.getElementById('article-view');
-    const postsGrid = document.getElementById('posts-grid');
+    const postsSlider = document.getElementById('posts-slider');
     const articleContent = document.getElementById('article-content');
-    const btnPrev = document.getElementById('btn-prev');
-    const btnNext = document.getElementById('btn-next');
-    const pageInfo = document.getElementById('page-info');
-    const paginationControls = document.getElementById('pagination-controls');
+    const searchInput = document.getElementById('search-input');
+    const loadingUI = document.getElementById('loading');
 
-    // Utility Functions
     function formatDate(dateStr) {
-      return new Date(dateStr).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+      return new Date(dateStr).toLocaleDateString('id-ID', { month: 'short', day: 'numeric', year: 'numeric' });
     }
     
     function getReadingTime(text) {
@@ -148,34 +228,44 @@
       return `${Math.ceil(words / 200)} min read`;
     }
 
-    // Ekstrak gambar pertama dari HTML untuk dijadikan Thumbnail
     function extractThumbnail(htmlContent) {
       const imgRegex = /<img[^>]+src="([^">]+)"/i;
       const match = htmlContent.match(imgRegex);
-      if (match) {
-        // Fix untuk URL Google Drive
-        return match[1].replace(/https:\/\/drive\.google\.com\/uc\?export=view(?:&amp;|&)id=([a-zA-Z0-9_-]+)/g, 'https://lh3.googleusercontent.com/d/$1');
-      }
+      if (match) return match[1];
       return null;
     }
 
-    // Menghapus HTML tag untuk membuat cuplikan teks (Excerpt)
     function stripHtmlToText(html) {
       const tmp = document.createElement("DIV");
       tmp.innerHTML = html;
       return tmp.textContent || tmp.innerText || "";
     }
 
-    // FUNGSI UTAMA: MENGAMBIL DATA DARI GAS
+    // Menggulir Slider secara manual
+    function scrollSlider(direction) {
+      const scrollAmount = window.innerWidth > 768 ? 420 : 320;
+      postsSlider.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+    }
+
+    // Fitur Live Search
+    searchInput.addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase();
+      const filtered = allPosts.filter(p => 
+        p.title.toLowerCase().includes(query) || 
+        p.tags.toLowerCase().includes(query) ||
+        p.excerpt.toLowerCase().includes(query)
+      );
+      renderSlider(filtered);
+    });
+
     async function fetchData() {
       try {
         const response = await fetch(GAS_API_URL);
         const result = await response.json();
         
         if (result.success && result.data.length > 0) {
-          allPosts = result.data.reverse(); // Terbaru di atas
+          allPosts = result.data.reverse();
           
-          // Fix semua URL gambar Drive di konten sebelum disimpan
           allPosts.forEach(post => {
             post.content = post.content.replace(/https:\/\/drive\.google\.com\/uc\?export=view(?:&amp;|&)id=([a-zA-Z0-9_-]+)/g, 'https://lh3.googleusercontent.com/d/$1');
             post.cleanHTML = DOMPurify.sanitize(post.content);
@@ -183,159 +273,116 @@
             post.excerpt = stripHtmlToText(post.cleanHTML);
           });
 
-          handleRouting(); // Render sesuai URL saat ini
-        } else {
-          postsGrid.innerHTML = `<p class="col-span-full text-center text-gray-500 py-10">Belum ada artikel yang dipublikasikan.</p>`;
+          if(loadingUI) loadingUI.remove();
+          handleRouting(); 
         }
       } catch (e) {
-        postsGrid.innerHTML = `<p class="col-span-full text-center text-red-500 py-10">Gagal memuat data dari server.</p>`;
+        if(loadingUI) {
+          loadingUI.innerHTML = `<p class="text-red-500 font-medium">Gagal memuat data. Periksa koneksi atau URL API.</p>`;
+        }
       }
     }
 
-    // FUNGSI RENDER: Menampilkan daftar artikel (PAGINATION)
-    function renderHome() {
-      homeView.classList.remove('hidden');
-      articleView.classList.add('hidden');
+    function renderSlider(postsToRender) {
+      postsSlider.innerHTML = ''; // Bersihkan slider
       
-      const startIndex = (currentPage - 1) * postsPerPage;
-      const endIndex = startIndex + postsPerPage;
-      const currentPosts = allPosts.slice(startIndex, endIndex);
+      if (postsToRender.length === 0) {
+        postsSlider.innerHTML = `<p class="text-gray-500 italic py-10 w-full text-center">Tidak ada artikel yang sesuai pencarian.</p>`;
+        return;
+      }
 
-      postsGrid.innerHTML = ''; // Bersihkan kontainer
-      window.scrollTo(0, 0); // Scroll ke atas
-
-      currentPosts.forEach(post => {
-        // Jika tidak ada gambar, gunakan placeholder warna pastel
-        const bgColors = ['bg-amber-100', 'bg-blue-100', 'bg-emerald-100', 'bg-rose-100', 'bg-purple-100'];
+      postsToRender.forEach(post => {
+        const bgColors = ['bg-amber-100 dark:bg-amber-900/30', 'bg-blue-100 dark:bg-blue-900/30', 'bg-emerald-100 dark:bg-emerald-900/30', 'bg-purple-100 dark:bg-purple-900/30'];
         const randomBg = bgColors[Math.floor(Math.random() * bgColors.length)];
+        
         const imageElement = post.thumbnail 
-          ? `<img src="${post.thumbnail}" alt="${post.title}" class="w-full h-48 object-cover">`
-          : `<div class="w-full h-48 ${randomBg} flex items-center justify-center text-gray-400 font-serif italic">No image</div>`;
+          ? `<img src="${post.thumbnail}" alt="${post.title}" class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-105">`
+          : `<div class="w-full h-56 ${randomBg} flex items-center justify-center text-gray-500 dark:text-gray-400 font-serif italic transition-transform duration-500 group-hover:scale-105">No Image Cover</div>`;
 
         const card = `
-          <div class="flex flex-col group cursor-pointer" onclick="window.location.hash='${post.slug}'">
-            <!-- Thumbnail -->
-            <div class="w-full h-48 mb-4 overflow-hidden rounded bg-gray-100">
+          <div class="min-w-[320px] md:min-w-[400px] flex-shrink-0 flex flex-col group cursor-pointer snap-start" onclick="window.location.hash='${post.slug}'">
+            <!-- Thumbnail Box -->
+            <div class="w-full h-56 mb-5 overflow-hidden rounded-xl bg-gray-100 dark:bg-gray-800 relative shadow-sm">
                ${imageElement}
+               <!-- Tag melayang -->
+               <div class="absolute top-3 left-3 bg-white/90 dark:bg-black/90 backdrop-blur text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md text-black dark:text-white">
+                 ${post.tags.split(',')[0]}
+               </div>
             </div>
             
             <!-- Author Info -->
             <div class="flex items-center gap-2 mb-3">
-              <div class="w-5 h-5 rounded-full bg-gray-800 text-white flex items-center justify-center text-[10px] font-bold">D</div>
-              <span class="text-xs font-medium text-gray-900">DevNotes Admin <span class="text-gray-400 font-normal ml-1">· ${formatDate(post.date)}</span></span>
+              <div class="w-6 h-6 rounded-full bg-black dark:bg-white text-white dark:text-black flex items-center justify-center text-xs font-bold font-serif">F</div>
+              <span class="text-sm font-medium text-gray-900 dark:text-gray-200">Fayadh <span class="text-gray-400 dark:text-gray-500 font-normal ml-1">· ${formatDate(post.date)}</span></span>
             </div>
             
             <!-- Title -->
-            <h2 class="text-xl font-bold text-black leading-tight mb-2 group-hover:underline decoration-2 underline-offset-4 line-clamp-2">
+            <h2 class="text-2xl font-bold text-black dark:text-white leading-tight mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors line-clamp-2">
               ${post.title}
             </h2>
             
             <!-- Excerpt -->
-            <p class="text-sm text-gray-600 font-serif leading-relaxed line-clamp-2 mb-4 flex-grow">
+            <p class="text-gray-600 dark:text-gray-400 font-serif leading-relaxed line-clamp-2 mb-4">
               ${post.excerpt}
             </p>
-            
-            <!-- Footer (Claps & Comments UI) -->
-            <div class="flex items-center justify-between text-gray-400 text-xs mt-auto pt-4">
-              <div class="flex items-center gap-4">
-                <span class="flex items-center gap-1 hover:text-black transition-colors"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.514"></path></svg> ${(Math.random() * 100).toFixed(0)}</span>
-                <span class="flex items-center gap-1 hover:text-black transition-colors"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg></span>
-              </div>
-              <span>${getReadingTime(post.excerpt)}</span>
-            </div>
           </div>
         `;
-        postsGrid.insertAdjacentHTML('beforeend', card);
+        postsSlider.insertAdjacentHTML('beforeend', card);
       });
-
-      updatePaginationUI();
     }
 
-    // FUNGSI RENDER: Menampilkan Detail Artikel
     function renderArticle(slug) {
       const post = allPosts.find(p => p.slug === slug);
-      if (!post) {
-        window.location.hash = ''; // Kembali ke home jika tidak ditemukan
-        return;
-      }
+      if (!post) { window.location.hash = ''; return; }
 
       homeView.classList.add('hidden');
       articleView.classList.remove('hidden');
       window.scrollTo(0, 0);
 
       const tagsHTML = post.tags.split(',')
-          .map(tag => `<span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs font-medium hover:bg-gray-200 transition-colors">${tag.trim()}</span>`)
+          .map(tag => `<span class="bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 px-3 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider">${tag.trim()}</span>`)
           .join(' ');
 
       articleContent.innerHTML = `
-        <div class="mb-10">
-          <h1 class="text-4xl sm:text-5xl font-extrabold text-black mb-6 leading-tight tracking-tight">${post.title}</h1>
+        <div class="mb-12">
+          <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-black dark:text-white mb-8 leading-[1.1] tracking-tight">${post.title}</h1>
           
-          <div class="flex items-center gap-4 mb-8">
-            <div class="w-12 h-12 rounded-full bg-black text-white flex items-center justify-center font-bold font-serif text-xl">D</div>
+          <div class="flex items-center gap-4 py-6 border-y border-gray-200 dark:border-gray-800 mb-10">
+            <div class="w-12 h-12 rounded-full bg-black dark:bg-white text-white dark:text-black flex items-center justify-center font-bold font-serif text-xl shadow-md">F</div>
             <div>
-              <div class="font-medium text-black">DevNotes Admin</div>
-              <div class="text-sm text-gray-500">${getReadingTime(post.content)} · ${formatDate(post.date)}</div>
+              <div class="font-bold text-black dark:text-white text-lg">Fayadh Notes</div>
+              <div class="text-sm text-gray-500 dark:text-gray-400 font-medium">${getReadingTime(post.content)} read · Published on ${formatDate(post.date)}</div>
             </div>
-          </div>
-          
-          <div class="border-y border-gray-200 py-3 mb-10 flex items-center gap-6 text-gray-500">
-             <span class="flex items-center gap-2 cursor-pointer hover:text-black"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.514"></path></svg></span>
-             <span class="flex items-center gap-2 cursor-pointer hover:text-black"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg></span>
           </div>
         </div>
         
-        <div class="prose prose-lg md:prose-xl max-w-none mb-12">
+        <!-- Konten Artikel dengan dukungan Dark Mode via Tailwind Typography -->
+        <div class="prose prose-lg md:prose-xl dark:prose-invert max-w-none mb-16 prose-a:text-blue-600 dark:prose-a:text-blue-400 prose-img:rounded-xl prose-img:shadow-lg prose-headings:tracking-tight">
           ${post.cleanHTML}
         </div>
         
-        <div class="flex flex-wrap gap-2 mt-8 border-t border-gray-200 pt-8">
+        <div class="flex flex-wrap gap-3 mt-10 border-t border-gray-200 dark:border-gray-800 pt-10">
           ${tagsHTML}
         </div>
       `;
 
-      // Render sintaks Prism setelah HTML dimuat
       Prism.highlightAll();
     }
 
-    // LOGIKA PAGINATION
-    function updatePaginationUI() {
-      const totalPages = Math.ceil(allPosts.length / postsPerPage);
-      
-      if (allPosts.length > postsPerPage) {
-        paginationControls.classList.remove('hidden');
-        pageInfo.innerText = `Page ${currentPage} of ${totalPages}`;
-        
-        btnPrev.disabled = currentPage === 1;
-        btnNext.disabled = currentPage === totalPages;
-      } else {
-        paginationControls.classList.add('hidden');
-      }
-    }
-
-    btnPrev.addEventListener('click', () => {
-      if (currentPage > 1) { currentPage--; renderHome(); }
-    });
-
-    btnNext.addEventListener('click', () => {
-      const totalPages = Math.ceil(allPosts.length / postsPerPage);
-      if (currentPage < totalPages) { currentPage++; renderHome(); }
-    });
-
-    // LOGIKA ROUTING (URL HASH)
     function handleRouting() {
       const hash = window.location.hash.replace('#', '');
       if (hash) {
         renderArticle(hash);
       } else {
-        renderHome();
+        homeView.classList.remove('hidden');
+        articleView.classList.add('hidden');
+        // Render ulang slider dengan semua post (mereset hasil pencarian)
+        searchInput.value = '';
+        renderSlider(allPosts);
       }
     }
 
-    // Pantau perubahan URL (saat user klik back/forward di browser)
     window.addEventListener('hashchange', handleRouting);
-
-    // Jalankan aplikasi
     fetchData();
   </script>
 </body>
