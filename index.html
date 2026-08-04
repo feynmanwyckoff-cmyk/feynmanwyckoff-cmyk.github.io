@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <!-- SEO & Open Graph (Preview Statis untuk WhatsApp) -->
+  <!-- SEO & Open Graph -->
   <title>Bulls, Bears, & Bugs - by Fayadh</title>
   <meta name="description" content="Membongkar yang rumit, menertawakan yang gagal.">
   <meta property="og:type" content="website">
@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
   
-  <!-- Tailwind CSS & Typography Plugin -->
+  <!-- Tailwind CSS & Typography -->
   <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
   <script>
     tailwind.config = {
@@ -56,34 +56,18 @@
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.6/purify.min.js"></script>
   
-  <!-- Prism.js & Copy Plugin -->
+  <!-- Prism.js & Zoom -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.css" rel="stylesheet" />
-  
   <script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script>
 
   <style>
     body { background-color: #ffffff; color: #242424; }
-    
     .fade-in { animation: fadeIn 0.4s ease-out forwards; }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(15px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 
     div.code-toolbar > .toolbar { opacity: 1 !important; top: 0.5rem !important; right: 0.5rem !important; }
-    div.code-toolbar > .toolbar button {
-      background: rgba(255, 255, 255, 0.1) !important;
-      color: #e5e5e5 !important;
-      border: 1px solid rgba(255, 255, 255, 0.2) !important;
-      border-radius: 6px !important;
-      padding: 0.3rem 0.6rem !important;
-      font-family: 'Inter', sans-serif !important;
-      font-size: 0.7rem !important;
-      font-weight: 600 !important;
-      transition: all 0.2s !important;
-      cursor: pointer;
-    }
+    div.code-toolbar > .toolbar button { background: rgba(255, 255, 255, 0.1) !important; color: #e5e5e5 !important; border: 1px solid rgba(255, 255, 255, 0.2) !important; border-radius: 6px !important; padding: 0.3rem 0.6rem !important; font-family: 'Inter', sans-serif !important; font-size: 0.7rem !important; font-weight: 600 !important; transition: all 0.2s !important; cursor: pointer; }
     div.code-toolbar > .toolbar button:hover { background: rgba(255, 255, 255, 0.2) !important; color: #fff !important; }
 
     .prose img { cursor: zoom-in; box-shadow: 0 4px 12px -2px rgba(0,0,0,0.08); }
@@ -91,18 +75,10 @@
     .medium-zoom-image--opened { z-index: 101; border-radius: 8px !important; }
 
     .b3-loader { animation: pulseLogo 1.2s infinite ease-in-out; }
-    @keyframes pulseLogo {
-      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(36, 36, 36, 0.4); }
-      70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(36, 36, 36, 0); }
-      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(36, 36, 36, 0); }
-    }
+    @keyframes pulseLogo { 0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(36, 36, 36, 0.4); } 70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(36, 36, 36, 0); } 100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(36, 36, 36, 0); } }
     
-    /* Animasi saat loader hilang */
     .fade-out { animation: fadeOut 0.3s ease-out forwards; }
-    @keyframes fadeOut {
-      from { opacity: 1; }
-      to { opacity: 0; visibility: hidden; }
-    }
+    @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; visibility: hidden; } }
   </style>
 </head>
 <body class="antialiased font-sans scroll-smooth">
@@ -110,14 +86,10 @@
   <!-- Global Header -->
   <header class="border-b border-gray-100 sticky top-0 bg-white/95 backdrop-blur-sm z-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[65px] flex items-center justify-between">
-      
-      <!-- Brand / Logo -->
       <a href="#" onclick="goHome(); return false;" class="flex items-center gap-3 group">
         <div class="w-9 h-9 bg-medium text-white flex items-center justify-center font-sans font-bold text-lg rounded-full shrink-0">B3</div>
         <span class="font-bold text-[1.1rem] sm:text-2xl tracking-tight text-medium whitespace-nowrap truncate max-w-[200px] sm:max-w-full">Bulls, Bears, & Bugs</span>
       </a>
-
-      <!-- Search Bar -->
       <div class="relative flex items-center">
         <svg class="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
         <input type="text" id="search-input" placeholder="Search notes..." class="pl-9 pr-4 py-2 bg-gray-50 hover:bg-gray-100 border-none rounded-full text-sm focus:ring-1 focus:ring-gray-300 outline-none w-40 sm:w-64 transition-all text-medium placeholder-gray-500">
@@ -125,19 +97,16 @@
     </div>
   </header>
 
-  <!-- INITIAL & TRANSITION FULL PAGE LOADER -->
-  <!-- Dihapus class 'hidden', sehingga ini akan langsung tampil menutupi layar saat web diakses -->
+  <!-- TRANSITION FULL PAGE LOADER DENGAN TEKS BRANDING -->
   <div id="full-page-loader" class="fixed inset-0 z-[60] bg-white flex flex-col items-center justify-center">
-     <div class="w-16 h-16 bg-medium text-white flex items-center justify-center font-sans font-bold text-2xl rounded-full b3-loader pb-1">B3</div>
+     <div class="w-20 h-20 bg-medium text-white flex items-center justify-center font-sans font-bold text-3xl rounded-full b3-loader pb-1 mb-6">B3</div>
+     <span class="font-extrabold text-2xl tracking-tight text-medium">Bulls, Bears, & Bugs</span>
   </div>
 
   <!-- HOME VIEW WRAPPER -->
   <div id="home-view" class="hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:flex gap-16">
-      
-      <!-- Bagian Kiri: Hero & Feed -->
       <div class="lg:w-[68%]">
-        <!-- Hero Section -->
         <div class="mb-10 pb-10 border-b border-gray-100">
           <h1 class="text-[3rem] sm:text-[4.5rem] font-extrabold tracking-tighter text-medium leading-none mb-4">Stay curious.</h1>
           <p class="text-xl sm:text-2xl text-medium font-medium mb-6 tracking-tight">Membongkar yang rumit, menertawakan yang gagal.</p>
@@ -147,11 +116,8 @@
         </div>
 
         <div id="active-tag-info" class="hidden mb-6 text-sm font-semibold text-mediumlight uppercase tracking-widest border-b border-gray-100 pb-2"></div>
-
-        <!-- Feed Container -->
         <div id="posts-container" class="flex flex-col"></div>
 
-        <!-- Pagination -->
         <div id="pagination-controls" class="hidden flex items-center justify-between py-10 mt-6 border-t border-gray-100">
           <button id="btn-prev" class="text-sm font-medium text-medium hover:bg-gray-100 disabled:opacity-30 border border-gray-200 rounded-full px-5 py-2 transition">← Newer</button>
           <span id="page-info" class="text-sm text-mediumlight font-medium"></span>
@@ -159,40 +125,33 @@
         </div>
       </div>
 
-      <!-- Bagian Kanan: Sidebar Tags -->
       <div class="hidden lg:block lg:w-[32%] relative">
         <div class="sticky top-[100px]">
           <h3 class="font-bold text-medium mb-4 text-base tracking-tight">Discover more of what matters to you</h3>
           <div id="tags-container" class="flex flex-wrap gap-2 mb-8"></div>
         </div>
       </div>
-
     </div>
   </div>
 
   <!-- ARTICLE VIEW -->
   <div id="article-view" class="hidden bg-white min-h-screen pb-20">
     <div class="max-w-[680px] mx-auto px-4 sm:px-6 pt-10">
-      
-      <!-- Tombol Kembali Atas -->
       <button onclick="goHome()" class="mb-10 flex items-center gap-2 text-sm font-medium text-mediumlight hover:text-medium transition-colors">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
         Kembali ke Beranda
       </button>
 
       <div id="article-header" class="mb-10"></div>
-      
       <div id="article-content" class="prose prose-lg sm:prose-xl max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-a:text-medium prose-p:leading-relaxed"></div>
       
       <div class="mt-12 border-t border-gray-100 pt-8 pb-10 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
          <div id="article-tags" class="flex flex-wrap gap-2"></div>
-         <!-- Tombol Kembali Bawah -->
          <button onclick="goHome()" class="flex items-center gap-2 text-sm font-semibold bg-gray-50 hover:bg-gray-100 text-medium px-4 py-2 rounded-full transition-colors shrink-0">
            ← Ke Beranda
          </button>
       </div>
 
-      <!-- READ NEXT SUGGESTION -->
       <div id="read-next-section" class="hidden border-t border-gray-100 pt-10 mt-10">
         <h3 class="font-bold text-2xl text-medium mb-6">Read next</h3>
         <div id="read-next-container" class="grid grid-cols-1 sm:grid-cols-2 gap-8"></div>
@@ -200,7 +159,6 @@
     </div>
   </div>
 
-  <!-- Script Prism & Plugins -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
@@ -212,7 +170,6 @@
     // ⚠️ MASUKKAN URL API GAS KAMU DI SINI
     const GAS_API_URL = "https://script.google.com/macros/s/AKfycbyUmgv6BRAlyGQqIwhIXm_I3NPi3j50EUSE-fpSmRhVQ8HbgsXQlr4JRRW1M6lNDuEr6Q/exec?action=getPosts";
 
-    // Quotes Feynman
     const quotes = [
       "The first principle is that you must not fool yourself and you are the easiest person to fool.",
       "What I cannot create, I do not understand.",
@@ -222,19 +179,13 @@
     ];
     document.getElementById('feynman-quote').innerHTML = `"${quotes[Math.floor(Math.random() * quotes.length)]}" <br><span class="text-sm font-sans font-semibold mt-2 block text-medium">— Richard Feynman</span>`;
 
-    let allPosts = [];
-    let uniqueTags = new Set();
-    let currentActiveTag = null;
-    let currentPage = 1;
+    let allPosts = [], uniqueTags = new Set(), currentActiveTag = null, currentPage = 1;
     const postsPerPage = 5;
 
-    const homeView = document.getElementById('home-view');
-    const articleView = document.getElementById('article-view');
-    const postsContainer = document.getElementById('posts-container');
-    const tagsContainer = document.getElementById('tags-container');
-    const searchInput = document.getElementById('search-input');
-    const activeTagInfo = document.getElementById('active-tag-info');
-    const fullPageLoader = document.getElementById('full-page-loader');
+    const homeView = document.getElementById('home-view'), articleView = document.getElementById('article-view'),
+          postsContainer = document.getElementById('posts-container'), tagsContainer = document.getElementById('tags-container'),
+          searchInput = document.getElementById('search-input'), activeTagInfo = document.getElementById('active-tag-info'),
+          fullPageLoader = document.getElementById('full-page-loader');
 
     function formatDate(dateStr) { return new Date(dateStr).toLocaleDateString('id-ID', { month: 'short', day: 'numeric', year: 'numeric' }); }
     function getReadingTime(text) { return `${Math.ceil(text.split(/\s/g).length / 200)} min read`; }
@@ -245,7 +196,6 @@
       try {
         const response = await fetch(GAS_API_URL);
         const result = await response.json();
-        
         if (result.success && result.data.length > 0) {
           allPosts = result.data.reverse();
           allPosts.forEach(post => {
@@ -255,9 +205,7 @@
             post.excerpt = stripHtmlToText(post.cleanHTML);
             post.tags.split(',').forEach(tag => { if(tag.trim()) uniqueTags.add(tag.trim()); });
           });
-          
           renderTags();
-          // Panggil handleRouting dengan parameter true (menandakan initial load)
           handleRouting(true); 
         }
       } catch (e) {
@@ -266,43 +214,22 @@
     }
 
     function renderTags() {
-      tagsContainer.innerHTML = Array.from(uniqueTags).map(tag => 
-        `<button onclick="setTagFilter('${tag}')" class="bg-gray-100 hover:bg-gray-200 text-medium px-4 py-2 rounded-full text-sm font-medium transition-colors border border-transparent hover:border-gray-300">${tag}</button>`
-      ).join('');
+      tagsContainer.innerHTML = Array.from(uniqueTags).map(tag => `<button onclick="setTagFilter('${tag}')" class="bg-gray-100 hover:bg-gray-200 text-medium px-4 py-2 rounded-full text-sm font-medium transition-colors border border-transparent hover:border-gray-300">${tag}</button>`).join('');
     }
 
-    // Fungsi Utama Kembali ke Beranda
     window.goHome = function() {
-      currentActiveTag = null;
-      currentPage = 1;
-      searchInput.value = '';
-      if(window.location.hash) {
-        window.location.hash = ''; // Memicu handleRouting
-      } else {
-        window.scrollTo({ top: 0, behavior: 'instant' });
-        renderFeed();
-      }
+      currentActiveTag = null; currentPage = 1; searchInput.value = '';
+      if(window.location.hash) { window.location.hash = ''; } 
+      else { window.scrollTo({ top: 0, behavior: 'instant' }); renderFeed(); }
     };
 
-    // Fungsi Set Filter Tag
     window.setTagFilter = function(tag) {
-      currentActiveTag = tag;
-      currentPage = 1;
-      searchInput.value = '';
-      
-      if(window.location.hash) {
-         window.location.hash = ''; 
-      } else {
-         window.scrollTo({ top: 0, behavior: 'smooth' });
-         renderFeed();
-      }
+      currentActiveTag = tag; currentPage = 1; searchInput.value = '';
+      if(window.location.hash) { window.location.hash = ''; } 
+      else { window.scrollTo({ top: 0, behavior: 'smooth' }); renderFeed(); }
     };
 
-    searchInput.addEventListener('input', (e) => {
-      currentActiveTag = null;
-      currentPage = 1;
-      renderFeed(e.target.value.toLowerCase());
-    });
+    searchInput.addEventListener('input', (e) => { currentActiveTag = null; currentPage = 1; renderFeed(e.target.value.toLowerCase()); });
 
     function renderFeed(searchQuery = '') {
       let filteredPosts = allPosts;
@@ -313,9 +240,7 @@
       } else if (searchQuery) {
         filteredPosts = allPosts.filter(p => p.title.toLowerCase().includes(searchQuery) || p.excerpt.toLowerCase().includes(searchQuery));
         activeTagInfo.classList.add('hidden');
-      } else {
-        activeTagInfo.classList.add('hidden');
-      }
+      } else { activeTagInfo.classList.add('hidden'); }
 
       postsContainer.innerHTML = '';
       if (filteredPosts.length === 0) {
@@ -330,14 +255,11 @@
         const card = `
           <div class="flex items-start justify-between gap-6 py-8 border-b border-gray-100 group cursor-pointer" onclick="window.location.hash='${post.slug}'">
             <div class="flex-1 min-w-0">
-              <div class="flex items-center gap-2 mb-2 text-sm text-medium">
-                <span class="font-semibold text-sm">Fayadh</span><span class="text-mediumlight font-normal text-[13px]">· ${formatDate(post.date)}</span>
-              </div>
+              <div class="flex items-center gap-2 mb-2 text-sm text-medium"><span class="font-semibold text-sm">Fayadh</span><span class="text-mediumlight font-normal text-[13px]">· ${formatDate(post.date)}</span></div>
               <h2 class="text-[1.25rem] sm:text-[1.6rem] font-extrabold text-medium mb-2 leading-tight group-hover:underline decoration-1 underline-offset-2 tracking-tight line-clamp-2">${post.title}</h2>
               <p class="text-mediumlight text-[0.95rem] sm:text-[1rem] leading-snug line-clamp-2 sm:line-clamp-3 mb-3">${post.excerpt}</p>
               <div class="flex items-center gap-3 text-[13px] text-mediumlight mt-4 sm:mt-0">
-                <span class="bg-gray-100 px-3 py-1 rounded-full text-xs font-medium text-gray-700">${post.tags.split(',')[0]}</span>
-                <span>${getReadingTime(post.excerpt)}</span>
+                <span class="bg-gray-100 px-3 py-1 rounded-full text-xs font-medium text-gray-700">${post.tags.split(',')[0]}</span><span>${getReadingTime(post.excerpt)}</span>
               </div>
             </div>
             ${thumbnailHTML ? `<div class="flex-shrink-0 pt-2 sm:pt-0">${thumbnailHTML}</div>` : ''}
@@ -352,9 +274,7 @@
         document.getElementById('page-info').innerText = `Page ${currentPage} of ${totalPages}`;
         document.getElementById('btn-prev').disabled = currentPage === 1;
         document.getElementById('btn-next').disabled = currentPage === totalPages;
-      } else {
-        document.getElementById('pagination-controls').classList.add('hidden');
-      }
+      } else { document.getElementById('pagination-controls').classList.add('hidden'); }
     }
 
     document.getElementById('btn-prev').addEventListener('click', () => { if(currentPage > 1) { currentPage--; renderFeed(); window.scrollTo({ top: 0, behavior: 'instant' }); } });
@@ -363,11 +283,9 @@
     function renderReadNext(currentSlug) {
       const otherPosts = allPosts.filter(p => p.slug !== currentSlug);
       if(otherPosts.length === 0) return;
-      
       const shuffled = otherPosts.sort(() => 0.5 - Math.random()).slice(0, 2);
       const container = document.getElementById('read-next-container');
       container.innerHTML = '';
-      
       shuffled.forEach(post => {
         const thumbnailHTML = post.thumbnail ? `<img src="${post.thumbnail}" class="w-full h-40 object-cover rounded-lg mb-3 shadow-sm border border-gray-100">` : `<div class="w-full h-40 bg-gray-50 rounded-lg mb-3 flex items-center justify-center text-sm text-gray-400 border border-gray-100">No Image</div>`;
         const card = `
@@ -386,7 +304,6 @@
       const post = allPosts.find(p => p.slug === slug);
       if (!post) { window.location.hash = ''; return; }
 
-      // Update Open Graph untuk Platform Social Media Dinamis
       document.title = post.title + " - Bulls, Bears, & Bugs";
       document.getElementById('og-title').setAttribute('content', post.title);
       document.getElementById('og-desc').setAttribute('content', post.excerpt.substring(0,100) + '...');
@@ -396,33 +313,25 @@
       document.getElementById('article-header').innerHTML = `
         <h1 class="text-[2.2rem] sm:text-[3rem] font-black text-medium leading-[1.1] tracking-tighter mb-8">${post.title}</h1>
         <div class="flex items-center gap-3 pb-8 border-b border-gray-100">
-          <div class="font-medium text-medium">Fayadh</div>
-          <span class="text-mediumlight">·</span>
+          <div class="font-medium text-medium">Fayadh</div><span class="text-mediumlight">·</span>
           <div class="text-sm text-mediumlight">${getReadingTime(post.content)} · ${formatDate(post.date)}</div>
         </div>
       `;
 
       const tempDiv = document.createElement('div');
       tempDiv.innerHTML = post.cleanHTML;
-      const preTags = tempDiv.querySelectorAll('pre');
-      preTags.forEach(pre => {
+      tempDiv.querySelectorAll('pre').forEach(pre => {
         if (!pre.querySelector('code')) {
           const code = document.createElement('code');
-          code.className = 'language-javascript'; 
-          code.innerHTML = pre.innerHTML;
-          pre.innerHTML = '';
-          pre.appendChild(code);
+          code.className = 'language-javascript'; code.innerHTML = pre.innerHTML;
+          pre.innerHTML = ''; pre.appendChild(code);
         }
       });
 
       document.getElementById('article-content').innerHTML = tempDiv.innerHTML;
-
-      document.getElementById('article-tags').innerHTML = post.tags.split(',')
-          .map(tag => `<span class="bg-gray-100 hover:bg-gray-200 transition text-medium px-4 py-1.5 rounded-full text-sm font-medium cursor-pointer" onclick="setTagFilter('${tag.trim()}')">${tag.trim()}</span>`)
-          .join('');
+      document.getElementById('article-tags').innerHTML = post.tags.split(',').map(tag => `<span class="bg-gray-100 hover:bg-gray-200 transition text-medium px-4 py-1.5 rounded-full text-sm font-medium cursor-pointer" onclick="setTagFilter('${tag.trim()}')">${tag.trim()}</span>`).join('');
 
       renderReadNext(slug);
-
       articleView.classList.add('fade-in');
       articleView.classList.remove('hidden');
       
@@ -434,7 +343,6 @@
 
     function handleRouting(isInitialLoad = false) {
       const hash = window.location.hash.replace('#', '');
-      
       homeView.classList.add('hidden');
       articleView.classList.add('hidden');
       articleView.classList.remove('fade-in');
@@ -442,7 +350,6 @@
 
       if (hash) {
         if (!isInitialLoad) fullPageLoader.classList.remove('hidden', 'fade-out');
-        
         setTimeout(() => {
            fullPageLoader.classList.add('fade-out');
            window.scrollTo({ top: 0, behavior: 'instant' }); 
