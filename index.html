@@ -13,10 +13,10 @@
   <meta property="og:description" id="og-desc" content="Membongkar yang rumit, menertawakan yang gagal.">
   <meta property="og:image" id="og-image" content="https://fayadh.web.id/icon.png">
 
-  <!-- Favicon B3 Otomatis ala Medium -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%23242424'/><text x='50' y='68' fill='white' font-family='Arial, Helvetica, sans-serif' font-weight='bold' font-size='48' text-anchor='middle'>B3</text></svg>">
+  <!-- Favicon B3 -->
+  <link rel="icon" href="icon.png">
 
-  <!-- Google Fonts: Inter, Lora, & Fira Code -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
@@ -56,11 +56,10 @@
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.6/purify.min.js"></script>
   
-  <!-- Prism.js CSS (Tema Terminal Atom) + Toolbar -->
+  <!-- Prism.js & Copy Plugin -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.css" rel="stylesheet" />
   
-  <!-- Medium Zoom Library -->
   <script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script>
 
   <style>
@@ -68,11 +67,10 @@
     
     .fade-in { animation: fadeIn 0.4s ease-out forwards; }
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
+      from { opacity: 0; transform: translateY(15px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Modifikasi Tombol Copy Prism yang Rapi */
     div.code-toolbar > .toolbar { opacity: 1 !important; top: 0.5rem !important; right: 0.5rem !important; }
     div.code-toolbar > .toolbar button {
       background: rgba(255, 255, 255, 0.1) !important;
@@ -88,17 +86,22 @@
     }
     div.code-toolbar > .toolbar button:hover { background: rgba(255, 255, 255, 0.2) !important; color: #fff !important; }
 
-    /* Zoom Image */
     .prose img { cursor: zoom-in; box-shadow: 0 4px 12px -2px rgba(0,0,0,0.08); }
     .medium-zoom-overlay { z-index: 100; background: #ffffff !important; opacity: 0.95 !important;}
     .medium-zoom-image--opened { z-index: 101; border-radius: 8px !important; }
 
-    /* B3 Loading */
     .b3-loader { animation: pulseLogo 1.2s infinite ease-in-out; }
     @keyframes pulseLogo {
       0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(36, 36, 36, 0.4); }
       70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(36, 36, 36, 0); }
       100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(36, 36, 36, 0); }
+    }
+    
+    /* Animasi saat loader hilang */
+    .fade-out { animation: fadeOut 0.3s ease-out forwards; }
+    @keyframes fadeOut {
+      from { opacity: 1; }
+      to { opacity: 0; visibility: hidden; }
     }
   </style>
 </head>
@@ -108,10 +111,10 @@
   <header class="border-b border-gray-100 sticky top-0 bg-white/95 backdrop-blur-sm z-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[65px] flex items-center justify-between">
       
-      <!-- Brand / Logo Ala Medium -->
+      <!-- Brand / Logo -->
       <a href="#" onclick="goHome(); return false;" class="flex items-center gap-3 group">
-        <div class="w-10 h-10 bg-medium text-white flex items-center justify-center font-sans font-bold text-xl rounded-full shrink-0 leading-none pb-0.5">B3</div>
-        <span class="font-extrabold text-[1.3rem] sm:text-[1.75rem] tracking-tight text-medium whitespace-nowrap truncate max-w-[200px] sm:max-w-full">Bulls, Bears, & Bugs</span>
+        <div class="w-9 h-9 bg-medium text-white flex items-center justify-center font-sans font-bold text-lg rounded-full shrink-0">B3</div>
+        <span class="font-bold text-[1.1rem] sm:text-2xl tracking-tight text-medium whitespace-nowrap truncate max-w-[200px] sm:max-w-full">Bulls, Bears, & Bugs</span>
       </a>
 
       <!-- Search Bar -->
@@ -122,8 +125,9 @@
     </div>
   </header>
 
-  <!-- TRANSITION FULL PAGE LOADER -->
-  <div id="full-page-loader" class="hidden fixed inset-0 z-[60] bg-white flex items-center justify-center">
+  <!-- INITIAL & TRANSITION FULL PAGE LOADER -->
+  <!-- Dihapus class 'hidden', sehingga ini akan langsung tampil menutupi layar saat web diakses -->
+  <div id="full-page-loader" class="fixed inset-0 z-[60] bg-white flex flex-col items-center justify-center">
      <div class="w-16 h-16 bg-medium text-white flex items-center justify-center font-sans font-bold text-2xl rounded-full b3-loader pb-1">B3</div>
   </div>
 
@@ -143,11 +147,6 @@
         </div>
 
         <div id="active-tag-info" class="hidden mb-6 text-sm font-semibold text-mediumlight uppercase tracking-widest border-b border-gray-100 pb-2"></div>
-
-        <!-- Feed Initial Loader -->
-        <div id="loading" class="flex flex-col items-center justify-center py-24">
-          <div class="w-16 h-16 bg-medium text-white flex items-center justify-center font-sans font-bold text-2xl rounded-full mb-4 b3-loader pb-1">B3</div>
-        </div>
 
         <!-- Feed Container -->
         <div id="posts-container" class="flex flex-col"></div>
@@ -213,7 +212,7 @@
     // ⚠️ MASUKKAN URL API GAS KAMU DI SINI
     const GAS_API_URL = "https://script.google.com/macros/s/AKfycbyUmgv6BRAlyGQqIwhIXm_I3NPi3j50EUSE-fpSmRhVQ8HbgsXQlr4JRRW1M6lNDuEr6Q/exec?action=getPosts";
 
-    // Quotes Feynman yang telah dibersihkan
+    // Quotes Feynman
     const quotes = [
       "The first principle is that you must not fool yourself and you are the easiest person to fool.",
       "What I cannot create, I do not understand.",
@@ -235,7 +234,6 @@
     const tagsContainer = document.getElementById('tags-container');
     const searchInput = document.getElementById('search-input');
     const activeTagInfo = document.getElementById('active-tag-info');
-    const loadingEl = document.getElementById('loading');
     const fullPageLoader = document.getElementById('full-page-loader');
 
     function formatDate(dateStr) { return new Date(dateStr).toLocaleDateString('id-ID', { month: 'short', day: 'numeric', year: 'numeric' }); }
@@ -257,12 +255,13 @@
             post.excerpt = stripHtmlToText(post.cleanHTML);
             post.tags.split(',').forEach(tag => { if(tag.trim()) uniqueTags.add(tag.trim()); });
           });
-          if(loadingEl) loadingEl.remove();
+          
           renderTags();
-          handleRouting(); 
+          // Panggil handleRouting dengan parameter true (menandakan initial load)
+          handleRouting(true); 
         }
       } catch (e) {
-        if(loadingEl) loadingEl.innerHTML = `<p class="text-red-500 py-10">Gagal mengambil data. Cek API.</p>`;
+        fullPageLoader.innerHTML = `<p class="text-red-500 font-medium">Gagal memuat data. Cek koneksi atau URL API GAS.</p>`;
       }
     }
 
@@ -272,13 +271,13 @@
       ).join('');
     }
 
-    // Fungsi Utama Kembali ke Beranda (Reset Semua Filter)
+    // Fungsi Utama Kembali ke Beranda
     window.goHome = function() {
       currentActiveTag = null;
       currentPage = 1;
       searchInput.value = '';
       if(window.location.hash) {
-        window.location.hash = ''; // Akan memicu handleRouting()
+        window.location.hash = ''; // Memicu handleRouting
       } else {
         window.scrollTo({ top: 0, behavior: 'instant' });
         renderFeed();
@@ -292,7 +291,7 @@
       searchInput.value = '';
       
       if(window.location.hash) {
-         window.location.hash = ''; // Akan memicu handleRouting, filter tidak hilang karena tidak memanggil goHome
+         window.location.hash = ''; 
       } else {
          window.scrollTo({ top: 0, behavior: 'smooth' });
          renderFeed();
@@ -387,7 +386,7 @@
       const post = allPosts.find(p => p.slug === slug);
       if (!post) { window.location.hash = ''; return; }
 
-      // Update Open Graph (Untuk platform selain WhatsApp yang mendeteksi JS Render)
+      // Update Open Graph untuk Platform Social Media Dinamis
       document.title = post.title + " - Bulls, Bears, & Bugs";
       document.getElementById('og-title').setAttribute('content', post.title);
       document.getElementById('og-desc').setAttribute('content', post.excerpt.substring(0,100) + '...');
@@ -433,7 +432,7 @@
       }, 50);
     }
 
-    function handleRouting() {
+    function handleRouting(isInitialLoad = false) {
       const hash = window.location.hash.replace('#', '');
       
       homeView.classList.add('hidden');
@@ -442,19 +441,20 @@
       homeView.classList.remove('fade-in');
 
       if (hash) {
-        fullPageLoader.classList.remove('hidden');
+        if (!isInitialLoad) fullPageLoader.classList.remove('hidden', 'fade-out');
         
         setTimeout(() => {
-           fullPageLoader.classList.add('hidden');
+           fullPageLoader.classList.add('fade-out');
            window.scrollTo({ top: 0, behavior: 'instant' }); 
            renderArticle(hash);
-        }, 400); 
+        }, isInitialLoad ? 100 : 400); 
       } else {
         document.title = "Bulls, Bears, & Bugs - by Fayadh";
         document.getElementById('og-title').setAttribute('content', "Bulls, Bears, & Bugs - by Fayadh");
         document.getElementById('og-desc').setAttribute('content', "Membongkar yang rumit, menertawakan yang gagal.");
         document.getElementById('og-image').setAttribute('content', "https://fayadh.web.id/icon.png");
 
+        fullPageLoader.classList.add('fade-out');
         window.scrollTo({ top: 0, behavior: 'instant' });
         homeView.classList.remove('hidden');
         homeView.classList.add('fade-in');
@@ -462,7 +462,7 @@
       }
     }
 
-    window.addEventListener('hashchange', handleRouting);
+    window.addEventListener('hashchange', () => handleRouting(false));
     fetchData();
   </script>
 </body>
