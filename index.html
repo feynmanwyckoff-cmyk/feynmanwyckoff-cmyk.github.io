@@ -4,18 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <!-- SEO & Open Graph (Preview WhatsApp & Social Media) -->
+  <!-- SEO & Open Graph (Preview Statis untuk WhatsApp) -->
   <title>Bulls, Bears, & Bugs - by Fayadh</title>
   <meta name="description" content="Membongkar yang rumit, menertawakan yang gagal.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://fayadh.web.id/">
   <meta property="og:title" id="og-title" content="Bulls, Bears, & Bugs - by Fayadh">
   <meta property="og:description" id="og-desc" content="Membongkar yang rumit, menertawakan yang gagal.">
-  <!-- Ini akan menjadi gambar default saat link website dibagikan -->
   <meta property="og:image" id="og-image" content="https://fayadh.web.id/icon.png">
 
-  <!-- Favicon B3 -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%23242424'/><text x='50' y='65' fill='white' font-family='Arial, sans-serif' font-weight='bold' font-size='45' text-anchor='middle'>B3</text></svg>">
+  <!-- Favicon B3 Otomatis ala Medium -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%23242424'/><text x='50' y='68' fill='white' font-family='Arial, Helvetica, sans-serif' font-weight='bold' font-size='48' text-anchor='middle'>B3</text></svg>">
 
   <!-- Google Fonts: Inter, Lora, & Fira Code -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,17 +32,11 @@
             serif: ['Lora', 'Georgia', 'serif'],
             mono: ['"Fira Code"', 'monospace']
           },
-          colors: {
-            medium: '#242424',
-            mediumlight: '#6b6b6b'
-          },
+          colors: { medium: '#242424', mediumlight: '#6b6b6b' },
           typography: (theme) => ({
             DEFAULT: {
               css: {
-                fontFamily: 'Lora, serif',
-                color: '#242424',
-                lineHeight: '2',
-                fontSize: '1.125rem',
+                fontFamily: 'Lora, serif', color: '#242424', lineHeight: '2', fontSize: '1.125rem',
                 h1: { fontFamily: 'Inter, sans-serif', fontWeight: '800', letterSpacing: '-0.03em', color: '#242424', lineHeight: '1.2' },
                 h2: { fontFamily: 'Inter, sans-serif', fontWeight: '800', letterSpacing: '-0.02em', marginTop: '2em', color: '#242424' },
                 h3: { fontFamily: 'Inter, sans-serif', fontWeight: '700', color: '#242424' },
@@ -51,7 +44,7 @@
                 pre: { backgroundColor: '#1d1f21', color: '#c5c8c6', padding: '1.25rem', paddingTop: '3rem', borderRadius: '0.75rem', fontSize: '0.875rem', fontFamily: '"Fira Code", monospace', overflowX: 'auto', position: 'relative' },
                 code: { fontFamily: '"Fira Code", monospace', fontWeight: '500' },
                 a: { color: '#242424', textDecoration: 'underline', textUnderlineOffset: '4px', decorationThickness: '1px', '&:hover': { color: '#6b6b6b' } },
-                img: { margin: '2rem auto', borderRadius: '0.5rem' },
+                img: { margin: '2rem auto', borderRadius: '0.75rem' },
                 blockquote: { borderLeftWidth: '3px', borderLeftColor: '#242424', fontStyle: 'italic', paddingLeft: '1.25rem', color: '#6b6b6b' }
               }
             }
@@ -61,7 +54,6 @@
     }
   </script>
   
-  <!-- DOMPurify -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.6/purify.min.js"></script>
   
   <!-- Prism.js CSS (Tema Terminal Atom) + Toolbar -->
@@ -74,14 +66,13 @@
   <style>
     body { background-color: #ffffff; color: #242424; }
     
-    /* Animasi Tampil Halus */
     .fade-in { animation: fadeIn 0.4s ease-out forwards; }
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Kustomisasi Prism Copy Button */
+    /* Modifikasi Tombol Copy Prism yang Rapi */
     div.code-toolbar > .toolbar { opacity: 1 !important; top: 0.5rem !important; right: 0.5rem !important; }
     div.code-toolbar > .toolbar button {
       background: rgba(255, 255, 255, 0.1) !important;
@@ -117,10 +108,10 @@
   <header class="border-b border-gray-100 sticky top-0 bg-white/95 backdrop-blur-sm z-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[65px] flex items-center justify-between">
       
-      <!-- Brand / Logo -->
-      <a href="#" onclick="window.location.hash=''; return false;" class="flex items-center gap-3 group">
-        <div class="w-9 h-9 bg-medium text-white flex items-center justify-center font-sans font-bold text-lg rounded-full shrink-0">B3</div>
-        <span class="font-bold text-[1.1rem] sm:text-2xl tracking-tight text-medium whitespace-nowrap truncate max-w-[200px] sm:max-w-full">Bulls, Bears, & Bugs</span>
+      <!-- Brand / Logo Ala Medium -->
+      <a href="#" onclick="goHome(); return false;" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 bg-medium text-white flex items-center justify-center font-sans font-bold text-xl rounded-full shrink-0 leading-none pb-0.5">B3</div>
+        <span class="font-extrabold text-[1.3rem] sm:text-[1.75rem] tracking-tight text-medium whitespace-nowrap truncate max-w-[200px] sm:max-w-full">Bulls, Bears, & Bugs</span>
       </a>
 
       <!-- Search Bar -->
@@ -133,7 +124,7 @@
 
   <!-- TRANSITION FULL PAGE LOADER -->
   <div id="full-page-loader" class="hidden fixed inset-0 z-[60] bg-white flex items-center justify-center">
-     <div class="w-16 h-16 bg-medium text-white flex items-center justify-center font-sans font-bold text-2xl rounded-full b3-loader">B3</div>
+     <div class="w-16 h-16 bg-medium text-white flex items-center justify-center font-sans font-bold text-2xl rounded-full b3-loader pb-1">B3</div>
   </div>
 
   <!-- HOME VIEW WRAPPER -->
@@ -155,7 +146,7 @@
 
         <!-- Feed Initial Loader -->
         <div id="loading" class="flex flex-col items-center justify-center py-24">
-          <div class="w-16 h-16 bg-medium text-white flex items-center justify-center font-sans font-bold text-2xl rounded-full mb-4 b3-loader">B3</div>
+          <div class="w-16 h-16 bg-medium text-white flex items-center justify-center font-sans font-bold text-2xl rounded-full mb-4 b3-loader pb-1">B3</div>
         </div>
 
         <!-- Feed Container -->
@@ -185,7 +176,7 @@
     <div class="max-w-[680px] mx-auto px-4 sm:px-6 pt-10">
       
       <!-- Tombol Kembali Atas -->
-      <button onclick="window.location.hash=''" class="mb-10 flex items-center gap-2 text-sm font-medium text-mediumlight hover:text-medium transition-colors">
+      <button onclick="goHome()" class="mb-10 flex items-center gap-2 text-sm font-medium text-mediumlight hover:text-medium transition-colors">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
         Kembali ke Beranda
       </button>
@@ -196,7 +187,8 @@
       
       <div class="mt-12 border-t border-gray-100 pt-8 pb-10 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
          <div id="article-tags" class="flex flex-wrap gap-2"></div>
-         <button onclick="window.location.hash=''" class="flex items-center gap-2 text-sm font-semibold bg-gray-50 hover:bg-gray-100 text-medium px-4 py-2 rounded-full transition-colors shrink-0">
+         <!-- Tombol Kembali Bawah -->
+         <button onclick="goHome()" class="flex items-center gap-2 text-sm font-semibold bg-gray-50 hover:bg-gray-100 text-medium px-4 py-2 rounded-full transition-colors shrink-0">
            ← Ke Beranda
          </button>
       </div>
@@ -221,7 +213,7 @@
     // ⚠️ MASUKKAN URL API GAS KAMU DI SINI
     const GAS_API_URL = "https://script.google.com/macros/s/AKfycbyUmgv6BRAlyGQqIwhIXm_I3NPi3j50EUSE-fpSmRhVQ8HbgsXQlr4JRRW1M6lNDuEr6Q/exec?action=getPosts";
 
-    // Quotes yang telah dibersihkan
+    // Quotes Feynman yang telah dibersihkan
     const quotes = [
       "The first principle is that you must not fool yourself and you are the easiest person to fool.",
       "What I cannot create, I do not understand.",
@@ -246,21 +238,10 @@
     const loadingEl = document.getElementById('loading');
     const fullPageLoader = document.getElementById('full-page-loader');
 
-    function formatDate(dateStr) {
-      return new Date(dateStr).toLocaleDateString('id-ID', { month: 'short', day: 'numeric', year: 'numeric' });
-    }
-    function getReadingTime(text) {
-      return `${Math.ceil(text.split(/\s/g).length / 200)} min read`;
-    }
-    function extractThumbnail(htmlContent) {
-      const match = htmlContent.match(/<img[^>]+src="([^">]+)"/i);
-      return match ? match[1] : null;
-    }
-    function stripHtmlToText(html) {
-      const tmp = document.createElement("DIV");
-      tmp.innerHTML = html;
-      return tmp.textContent || tmp.innerText || "";
-    }
+    function formatDate(dateStr) { return new Date(dateStr).toLocaleDateString('id-ID', { month: 'short', day: 'numeric', year: 'numeric' }); }
+    function getReadingTime(text) { return `${Math.ceil(text.split(/\s/g).length / 200)} min read`; }
+    function extractThumbnail(htmlContent) { const match = htmlContent.match(/<img[^>]+src="([^">]+)"/i); return match ? match[1] : null; }
+    function stripHtmlToText(html) { const tmp = document.createElement("DIV"); tmp.innerHTML = html; return tmp.textContent || tmp.innerText || ""; }
 
     async function fetchData() {
       try {
@@ -291,17 +272,30 @@
       ).join('');
     }
 
-    // PERBAIKAN BUG TAG FILTER
+    // Fungsi Utama Kembali ke Beranda (Reset Semua Filter)
+    window.goHome = function() {
+      currentActiveTag = null;
+      currentPage = 1;
+      searchInput.value = '';
+      if(window.location.hash) {
+        window.location.hash = ''; // Akan memicu handleRouting()
+      } else {
+        window.scrollTo({ top: 0, behavior: 'instant' });
+        renderFeed();
+      }
+    };
+
+    // Fungsi Set Filter Tag
     window.setTagFilter = function(tag) {
       currentActiveTag = tag;
       currentPage = 1;
       searchInput.value = '';
       
-      if (window.location.hash) {
-        window.location.hash = ''; // Jika sedang di artikel, paksa hashchange ke beranda
+      if(window.location.hash) {
+         window.location.hash = ''; // Akan memicu handleRouting, filter tidak hilang karena tidak memanggil goHome
       } else {
-        window.scrollTo({ top: 0, behavior: 'smooth' }); // Jika sudah di beranda, panggil render manual
-        renderFeed();
+         window.scrollTo({ top: 0, behavior: 'smooth' });
+         renderFeed();
       }
     };
 
@@ -315,7 +309,7 @@
       let filteredPosts = allPosts;
       if (currentActiveTag) {
         filteredPosts = allPosts.filter(p => p.tags.toLowerCase().includes(currentActiveTag.toLowerCase()));
-        activeTagInfo.innerHTML = `Melihat Topik: <span class="text-medium ml-1">${currentActiveTag}</span> <button onclick="setTagFilter(null)" class="text-gray-400 hover:text-black normal-case font-normal ml-3 underline underline-offset-2">(Hapus Filter)</button>`;
+        activeTagInfo.innerHTML = `Melihat Topik: <span class="text-medium ml-1">${currentActiveTag}</span> <button onclick="goHome()" class="text-gray-400 hover:text-black normal-case font-normal ml-3 underline underline-offset-2">(Hapus Filter)</button>`;
         activeTagInfo.classList.remove('hidden');
       } else if (searchQuery) {
         filteredPosts = allPosts.filter(p => p.title.toLowerCase().includes(searchQuery) || p.excerpt.toLowerCase().includes(searchQuery));
@@ -341,7 +335,6 @@
                 <span class="font-semibold text-sm">Fayadh</span><span class="text-mediumlight font-normal text-[13px]">· ${formatDate(post.date)}</span>
               </div>
               <h2 class="text-[1.25rem] sm:text-[1.6rem] font-extrabold text-medium mb-2 leading-tight group-hover:underline decoration-1 underline-offset-2 tracking-tight line-clamp-2">${post.title}</h2>
-              <!-- Dihilangkan class hidden sm:block agar snippet muncul juga di HP -->
               <p class="text-mediumlight text-[0.95rem] sm:text-[1rem] leading-snug line-clamp-2 sm:line-clamp-3 mb-3">${post.excerpt}</p>
               <div class="flex items-center gap-3 text-[13px] text-mediumlight mt-4 sm:mt-0">
                 <span class="bg-gray-100 px-3 py-1 rounded-full text-xs font-medium text-gray-700">${post.tags.split(',')[0]}</span>
@@ -394,11 +387,10 @@
       const post = allPosts.find(p => p.slug === slug);
       if (!post) { window.location.hash = ''; return; }
 
-      // UPDATE OPEN GRAPH SECARA DINAMIS (Walaupun WA tidak mendeteksinya, bot lain seperti Telegram/Twitter bisa)
+      // Update Open Graph (Untuk platform selain WhatsApp yang mendeteksi JS Render)
       document.title = post.title + " - Bulls, Bears, & Bugs";
       document.getElementById('og-title').setAttribute('content', post.title);
       document.getElementById('og-desc').setAttribute('content', post.excerpt.substring(0,100) + '...');
-      
       const ogImage = post.thumbnail ? post.thumbnail : "https://fayadh.web.id/icon.png";
       document.getElementById('og-image').setAttribute('content', ogImage);
 
@@ -427,7 +419,7 @@
       document.getElementById('article-content').innerHTML = tempDiv.innerHTML;
 
       document.getElementById('article-tags').innerHTML = post.tags.split(',')
-          .map(tag => `<span class="bg-gray-100 hover:bg-gray-200 transition text-medium px-4 py-1.5 rounded-full text-sm font-medium cursor-pointer" onclick="window.location.hash=''; setTimeout(()=>setTagFilter('${tag.trim()}'), 100);">${tag.trim()}</span>`)
+          .map(tag => `<span class="bg-gray-100 hover:bg-gray-200 transition text-medium px-4 py-1.5 rounded-full text-sm font-medium cursor-pointer" onclick="setTagFilter('${tag.trim()}')">${tag.trim()}</span>`)
           .join('');
 
       renderReadNext(slug);
@@ -458,7 +450,6 @@
            renderArticle(hash);
         }, 400); 
       } else {
-        // Reset Open Graph ke default saat di beranda
         document.title = "Bulls, Bears, & Bugs - by Fayadh";
         document.getElementById('og-title').setAttribute('content', "Bulls, Bears, & Bugs - by Fayadh");
         document.getElementById('og-desc').setAttribute('content', "Membongkar yang rumit, menertawakan yang gagal.");
