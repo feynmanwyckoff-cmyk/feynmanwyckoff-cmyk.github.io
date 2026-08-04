@@ -3,16 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bulls, Bears, & Bugs - by Fayadh</title>
   
+  <!-- SEO & Open Graph (WhatsApp Preview) -->
+  <title>Bulls, Bears, & Bugs - by Fayadh</title>
+  <meta name="description" content="Membongkar yang rumit, menertawakan yang gagal.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" id="og-title" content="Bulls, Bears, & Bugs - by Fayadh">
+  <meta property="og:description" id="og-desc" content="Membongkar yang rumit, menertawakan yang gagal.">
+  <!-- Ganti URL ini dengan URL gambar PNG B3 milikmu yang sudah dihosting (misal di imgur/github) agar muncul di WA -->
+  <meta property="og:image" id="og-image" content="https://dummyimage.com/600x600/242424/ffffff.png&text=B3">
+
+  <!-- Favicon B3 -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%23242424'/><text x='50' y='65' fill='white' font-family='Arial, sans-serif' font-weight='bold' font-size='45' text-anchor='middle'>B3</text></svg>">
 
-  <!-- Google Fonts: Inter, Lora, & Fira Code -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
   
-  <!-- Tailwind CSS & Typography Plugin -->
+  <!-- Tailwind CSS & Typography -->
   <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
   <script>
     tailwind.config = {
@@ -23,25 +32,20 @@
             serif: ['Lora', 'Georgia', 'serif'],
             mono: ['"Fira Code"', 'monospace']
           },
-          colors: {
-            medium: '#242424',
-            mediumlight: '#6b6b6b'
-          },
+          colors: { medium: '#242424', mediumlight: '#6b6b6b' },
           typography: (theme) => ({
             DEFAULT: {
               css: {
-                fontFamily: 'Lora, serif',
-                color: '#242424',
-                lineHeight: '2',
-                fontSize: '1.125rem',
+                fontFamily: 'Lora, serif', color: '#242424', lineHeight: '2', fontSize: '1.125rem',
                 h1: { fontFamily: 'Inter, sans-serif', fontWeight: '800', letterSpacing: '-0.03em', color: '#242424', lineHeight: '1.2' },
                 h2: { fontFamily: 'Inter, sans-serif', fontWeight: '800', letterSpacing: '-0.02em', marginTop: '2em', color: '#242424' },
                 h3: { fontFamily: 'Inter, sans-serif', fontWeight: '700', color: '#242424' },
                 p: { color: '#242424' },
-                pre: { backgroundColor: '#1d1f21', color: '#c5c8c6', padding: '1.5rem', borderRadius: '0.75rem', fontSize: '0.875rem', fontFamily: '"Fira Code", monospace', overflowX: 'auto' },
+                /* Modifikasi blok kode agar muat tombol copy */
+                pre: { backgroundColor: '#1d1f21', color: '#c5c8c6', padding: '1.25rem', paddingTop: '3rem', borderRadius: '0.75rem', fontSize: '0.875rem', fontFamily: '"Fira Code", monospace', overflowX: 'auto', position: 'relative' },
                 code: { fontFamily: '"Fira Code", monospace', fontWeight: '500' },
                 a: { color: '#242424', textDecoration: 'underline', textUnderlineOffset: '4px', decorationThickness: '1px', '&:hover': { color: '#6b6b6b' } },
-                img: { margin: '2rem auto', borderRadius: '0.5rem' },
+                img: { margin: '2rem auto', borderRadius: '0.75rem' },
                 blockquote: { borderLeftWidth: '3px', borderLeftColor: '#242424', fontStyle: 'italic', paddingLeft: '1.25rem', color: '#6b6b6b' }
               }
             }
@@ -51,48 +55,43 @@
     }
   </script>
   
-  <!-- DOMPurify -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.6/purify.min.js"></script>
   
-  <!-- Prism.js CSS (Tema Terminal/Atom Dark) + Toolbar -->
+  <!-- Prism.js (Tema Terminal Atom) -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.css" rel="stylesheet" />
   
-  <!-- Medium Zoom Library -->
   <script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script>
 
   <style>
     body { background-color: #ffffff; color: #242424; }
     
-    /* Animasi Tampil Halus */
-    .fade-in { animation: fadeIn 0.3s ease-out forwards; }
+    .fade-in { animation: fadeIn 0.4s ease-out forwards; }
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(15px); }
+      from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Kustomisasi Prism Copy Button */
-    div.code-toolbar > .toolbar { opacity: 1 !important; top: 0.5rem; right: 0.5rem; }
-    div.code-toolbar > .toolbar a, div.code-toolbar > .toolbar button, div.code-toolbar > .toolbar span {
-      background: #333333 !important;
+    /* Modifikasi Tombol Copy Prism yang Rapi */
+    div.code-toolbar > .toolbar { opacity: 1 !important; top: 0.5rem !important; right: 0.5rem !important; }
+    div.code-toolbar > .toolbar button {
+      background: rgba(255, 255, 255, 0.1) !important;
       color: #e5e5e5 !important;
+      border: 1px solid rgba(255, 255, 255, 0.2) !important;
       border-radius: 6px !important;
-      padding: 0.35rem 0.75rem !important;
+      padding: 0.3rem 0.6rem !important;
       font-family: 'Inter', sans-serif !important;
-      font-size: 0.75rem !important;
+      font-size: 0.7rem !important;
       font-weight: 600 !important;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.2) !important;
       transition: all 0.2s !important;
       cursor: pointer;
     }
-    div.code-toolbar > .toolbar button:hover { background: #4b5563 !important; color: #fff !important; }
+    div.code-toolbar > .toolbar button:hover { background: rgba(255, 255, 255, 0.2) !important; color: #fff !important; }
 
-    /* Zoom Image */
     .prose img { cursor: zoom-in; box-shadow: 0 4px 12px -2px rgba(0,0,0,0.08); }
     .medium-zoom-overlay { z-index: 100; background: #ffffff !important; opacity: 0.95 !important;}
-    .medium-zoom-image--opened { z-index: 101; border-radius: 4px !important; }
+    .medium-zoom-image--opened { z-index: 101; border-radius: 8px !important; }
 
-    /* B3 Loading */
     .b3-loader { animation: pulseLogo 1.2s infinite ease-in-out; }
     @keyframes pulseLogo {
       0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(36, 36, 36, 0.4); }
@@ -101,16 +100,15 @@
     }
   </style>
 </head>
-<body class="antialiased font-sans">
+<body class="antialiased font-sans scroll-smooth">
 
   <!-- Global Header -->
   <header class="border-b border-gray-100 sticky top-0 bg-white/95 backdrop-blur-sm z-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[65px] flex items-center justify-between">
       
-      <!-- Brand / Logo -->
+      <!-- Brand -->
       <a href="#" onclick="window.location.hash=''; return false;" class="flex items-center gap-3 group">
         <div class="w-9 h-9 bg-medium text-white flex items-center justify-center font-sans font-bold text-lg rounded-full shrink-0">B3</div>
-        <!-- Tulisan Auto-Fit: tidak akan jadi 2 baris berkat whitespace-nowrap dan truncate pada mobile -->
         <span class="font-bold text-[1.1rem] sm:text-2xl tracking-tight text-medium whitespace-nowrap truncate max-w-[200px] sm:max-w-full">Bulls, Bears, & Bugs</span>
       </a>
 
@@ -122,12 +120,15 @@
     </div>
   </header>
 
-  <!-- HOME VIEW (Grid Utama & Sidebar Tag) -->
+  <!-- TRANSITION FULL PAGE LOADER -->
+  <div id="full-page-loader" class="hidden fixed inset-0 z-[60] bg-white flex items-center justify-center">
+     <div class="w-16 h-16 bg-medium text-white flex items-center justify-center font-sans font-bold text-2xl rounded-full b3-loader">B3</div>
+  </div>
+
+  <!-- HOME VIEW -->
   <div id="home-view" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:flex gap-16">
-    
-    <!-- Bagian Kiri: Hero & Feed -->
     <div class="lg:w-[68%]">
-      <!-- Hero Section -->
+      <!-- Hero -->
       <div class="mb-10 pb-10 border-b border-gray-100">
         <h1 class="text-[3rem] sm:text-[4.5rem] font-extrabold tracking-tighter text-medium leading-none mb-4">Stay curious.</h1>
         <p class="text-xl sm:text-2xl text-medium font-medium mb-6 tracking-tight">Membongkar yang rumit, menertawakan yang gagal.</p>
@@ -138,7 +139,7 @@
 
       <div id="active-tag-info" class="hidden mb-6 text-sm font-semibold text-mediumlight uppercase tracking-widest border-b border-gray-100 pb-2"></div>
 
-      <!-- Loading Animasi -->
+      <!-- Feed Initial Loader -->
       <div id="loading" class="flex flex-col items-center justify-center py-24">
         <div class="w-16 h-16 bg-medium text-white flex items-center justify-center font-sans font-bold text-2xl rounded-full mb-4 b3-loader">B3</div>
       </div>
@@ -154,7 +155,7 @@
       </div>
     </div>
 
-    <!-- Bagian Kanan: Sidebar Archive -->
+    <!-- Sidebar Tags -->
     <div class="hidden lg:block lg:w-[32%] relative">
       <div class="sticky top-[100px]">
         <h3 class="font-bold text-medium mb-4 text-base tracking-tight">Discover more of what matters to you</h3>
@@ -163,23 +164,19 @@
     </div>
   </div>
 
-  <!-- ARTICLE VIEW (Mode Baca Lengkap) -->
+  <!-- ARTICLE VIEW -->
   <div id="article-view" class="hidden bg-white min-h-screen pb-20">
     <div class="max-w-[680px] mx-auto px-4 sm:px-6 pt-10">
       
-      <!-- Tombol Kembali Atas -->
       <button onclick="window.location.hash=''" class="mb-10 flex items-center gap-2 text-sm font-medium text-mediumlight hover:text-medium transition-colors">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
         Kembali ke Beranda
       </button>
 
-      <!-- Article Header -->
       <div id="article-header" class="mb-10"></div>
       
-      <!-- Article Content -->
       <div id="article-content" class="prose prose-lg sm:prose-xl max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-a:text-medium prose-p:leading-relaxed"></div>
       
-      <!-- Article Footer (Tags & Kembali) -->
       <div class="mt-12 border-t border-gray-100 pt-8 pb-10 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
          <div id="article-tags" class="flex flex-wrap gap-2"></div>
          <button onclick="window.location.hash=''" class="flex items-center gap-2 text-sm font-semibold bg-gray-50 hover:bg-gray-100 text-medium px-4 py-2 rounded-full transition-colors shrink-0">
@@ -195,7 +192,6 @@
     </div>
   </div>
 
-  <!-- Script Prism & Plugins (Highlight, Toolbar, Copy-to-Clipboard) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
@@ -207,12 +203,13 @@
     // ⚠️ MASUKKAN URL API GAS KAMU DI SINI
     const GAS_API_URL = "https://script.google.com/macros/s/AKfycbyUmgv6BRAlyGQqIwhIXm_I3NPi3j50EUSE-fpSmRhVQ8HbgsXQlr4JRRW1M6lNDuEr6Q/exec?action=getPosts";
 
+    // Quotes yang telah direvisi
     const quotes = [
       "The first principle is that you must not fool yourself and you are the easiest person to fool.",
       "What I cannot create, I do not understand.",
       "I think it's much more interesting to live not knowing than to have answers which might be wrong.",
-      "Physics is to math what sex is to masturbation.",
-      "Study hard what interests you the most in the most undisciplined, irreverent and original manner possible."
+      "Study hard what interests you the most in the most undisciplined, irreverent and original manner possible.",
+      "Nobody ever figures out what life is all about, and it doesn't matter."
     ];
     document.getElementById('feynman-quote').innerHTML = `"${quotes[Math.floor(Math.random() * quotes.length)]}" <br><span class="text-sm font-sans font-semibold mt-2 block text-medium">— Richard Feynman</span>`;
 
@@ -229,6 +226,7 @@
     const searchInput = document.getElementById('search-input');
     const activeTagInfo = document.getElementById('active-tag-info');
     const loadingEl = document.getElementById('loading');
+    const fullPageLoader = document.getElementById('full-page-loader');
 
     function formatDate(dateStr) {
       return new Date(dateStr).toLocaleDateString('id-ID', { month: 'short', day: 'numeric', year: 'numeric' });
@@ -279,9 +277,7 @@
       currentActiveTag = tag;
       currentPage = 1;
       searchInput.value = '';
-      window.location.hash = ''; // Force ke home
-      window.scrollTo({ top: 0, behavior: 'instant' });
-      renderFeed();
+      window.location.hash = ''; 
     };
 
     searchInput.addEventListener('input', (e) => {
@@ -320,13 +316,14 @@
                 <span class="font-semibold text-sm">Fayadh</span><span class="text-mediumlight font-normal text-[13px]">· ${formatDate(post.date)}</span>
               </div>
               <h2 class="text-[1.25rem] sm:text-[1.6rem] font-extrabold text-medium mb-2 leading-tight group-hover:underline decoration-1 underline-offset-2 tracking-tight line-clamp-2">${post.title}</h2>
-              <p class="hidden sm:block text-mediumlight text-[1rem] leading-snug line-clamp-2 mb-3">${post.excerpt}</p>
-              <div class="flex items-center gap-3 text-[13px] text-mediumlight">
+              <!-- Snippet sekarang dipaksa muncul di Mobile dan Desktop -->
+              <p class="text-mediumlight text-[0.95rem] sm:text-[1rem] leading-snug line-clamp-2 sm:line-clamp-3 mb-3">${post.excerpt}</p>
+              <div class="flex items-center gap-3 text-[13px] text-mediumlight mt-4 sm:mt-0">
                 <span class="bg-gray-100 px-3 py-1 rounded-full text-xs font-medium text-gray-700">${post.tags.split(',')[0]}</span>
                 <span>${getReadingTime(post.excerpt)}</span>
               </div>
             </div>
-            ${thumbnailHTML ? `<div class="flex-shrink-0 pt-2 sm:pt-0">${thumbnailHTML}</div>` : ''}
+            ${thumbnailHTML ? `<div class="flex-shrink-0 mt-2 sm:mt-0">${thumbnailHTML}</div>` : ''}
           </div>
         `;
         postsContainer.insertAdjacentHTML('beforeend', card);
@@ -343,8 +340,8 @@
       }
     }
 
-    document.getElementById('btn-prev').addEventListener('click', () => { if(currentPage > 1) { currentPage--; renderFeed(); window.scrollTo({ top: 0, behavior: 'instant' }); } });
-    document.getElementById('btn-next').addEventListener('click', () => { currentPage++; renderFeed(); window.scrollTo({ top: 0, behavior: 'instant' }); });
+    document.getElementById('btn-prev').addEventListener('click', () => { if(currentPage > 1) { currentPage--; renderFeed(); window.scrollTo({ top: 0, behavior: 'smooth' }); } });
+    document.getElementById('btn-next').addEventListener('click', () => { currentPage++; renderFeed(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
 
     function renderReadNext(currentSlug) {
       const otherPosts = allPosts.filter(p => p.slug !== currentSlug);
@@ -355,11 +352,11 @@
       container.innerHTML = '';
       
       shuffled.forEach(post => {
-        const thumbnailHTML = post.thumbnail ? `<img src="${post.thumbnail}" class="w-full h-40 object-cover rounded-lg mb-3">` : `<div class="w-full h-40 bg-gray-100 rounded-lg mb-3 flex items-center justify-center text-sm text-gray-400">No Image</div>`;
+        const thumbnailHTML = post.thumbnail ? `<img src="${post.thumbnail}" class="w-full h-40 object-cover rounded-lg mb-3 shadow-sm border border-gray-100">` : `<div class="w-full h-40 bg-gray-50 rounded-lg mb-3 flex items-center justify-center text-sm text-gray-400 border border-gray-100">No Image</div>`;
         const card = `
           <div class="cursor-pointer group" onclick="window.location.hash='${post.slug}'">
             ${thumbnailHTML}
-            <h4 class="font-bold text-lg text-medium group-hover:underline line-clamp-2 leading-tight">${post.title}</h4>
+            <h4 class="font-bold text-lg text-medium group-hover:underline decoration-1 underline-offset-2 line-clamp-2 leading-tight">${post.title}</h4>
             <p class="text-sm text-mediumlight mt-2">${formatDate(post.date)} · ${getReadingTime(post.excerpt)}</p>
           </div>
         `;
@@ -372,34 +369,29 @@
       const post = allPosts.find(p => p.slug === slug);
       if (!post) { window.location.hash = ''; return; }
 
-      // Scroll paksa ke atas tanpa animasi agar langsung instan
-      window.scrollTo({ top: 0, behavior: 'instant' });
+      // Update Dynamic Meta Tags untuk Scraping Advanced
+      document.title = post.title + " - Fayadh Notes";
+      document.getElementById('og-title').setAttribute('content', post.title);
+      document.getElementById('og-desc').setAttribute('content', post.excerpt.substring(0,100) + '...');
+      if(post.thumbnail) document.getElementById('og-image').setAttribute('content', post.thumbnail);
 
-      homeView.classList.add('hidden');
-      articleView.classList.add('fade-in');
-      articleView.classList.remove('hidden');
-
+      // Rendering Konten
       document.getElementById('article-header').innerHTML = `
         <h1 class="text-[2.2rem] sm:text-[3rem] font-black text-medium leading-[1.1] tracking-tighter mb-8">${post.title}</h1>
         <div class="flex items-center gap-3 pb-8 border-b border-gray-100">
-          <div class="w-11 h-11 rounded-full bg-medium text-white flex items-center justify-center font-bold text-lg">F</div>
-          <div>
-            <div class="font-medium text-medium">Fayadh</div>
-            <div class="text-sm text-mediumlight mt-0.5">${getReadingTime(post.content)} · ${formatDate(post.date)}</div>
-          </div>
+          <div class="font-medium text-medium">Fayadh</div>
+          <span class="text-mediumlight">·</span>
+          <div class="text-sm text-mediumlight">${getReadingTime(post.content)} · ${formatDate(post.date)}</div>
         </div>
       `;
 
-      // Menyiapkan konten HTML & Menyusun ulang tag <pre> untuk Prism.js Copy Plugin
       const tempDiv = document.createElement('div');
       tempDiv.innerHTML = post.cleanHTML;
-      
-      // Bungkus isi <pre> dengan <code> agar Prism.js bisa mendeteksinya
       const preTags = tempDiv.querySelectorAll('pre');
       preTags.forEach(pre => {
         if (!pre.querySelector('code')) {
           const code = document.createElement('code');
-          code.className = 'language-javascript'; // Default
+          code.className = 'language-javascript'; 
           code.innerHTML = pre.innerHTML;
           pre.innerHTML = '';
           pre.appendChild(code);
@@ -409,12 +401,16 @@
       document.getElementById('article-content').innerHTML = tempDiv.innerHTML;
 
       document.getElementById('article-tags').innerHTML = post.tags.split(',')
-          .map(tag => `<span class="bg-gray-100 hover:bg-gray-200 transition text-medium px-4 py-1.5 rounded-full text-sm font-medium cursor-pointer" onclick="window.location.hash=''; setTimeout(()=>setTagFilter('${tag.trim()}'), 10);">${tag.trim()}</span>`)
+          .map(tag => `<span class="bg-gray-100 hover:bg-gray-200 transition text-medium px-4 py-1.5 rounded-full text-sm font-medium cursor-pointer" onclick="window.location.hash=''; setTimeout(()=>setTagFilter('${tag.trim()}'), 100);">${tag.trim()}</span>`)
           .join('');
 
       renderReadNext(slug);
 
-      // Eksekusi ulang styling
+      // Pastikan layar siap sebelum animasi masuk
+      articleView.classList.add('fade-in');
+      articleView.classList.remove('hidden');
+      
+      // Delay kecil agar Prism me-render Syntax dan Button
       setTimeout(() => {
         Prism.highlightAll();
         mediumZoom('.prose img', { margin: 24, background: '#ffffff' });
@@ -423,15 +419,27 @@
 
     function handleRouting() {
       const hash = window.location.hash.replace('#', '');
+      
+      homeView.classList.add('hidden');
+      articleView.classList.add('hidden');
       articleView.classList.remove('fade-in');
+      homeView.classList.remove('fade-in');
 
       if (hash) {
-        renderArticle(hash);
+        // Tampilkan transisi loading B3 di Desktop & Mobile
+        fullPageLoader.classList.remove('hidden');
+        
+        setTimeout(() => {
+           fullPageLoader.classList.add('hidden');
+           window.scrollTo(0, 0); // Scroll Instant ke Puncak Layar
+           renderArticle(hash);
+        }, 400); // Simulasi request
       } else {
-        window.scrollTo({ top: 0, behavior: 'instant' });
-        homeView.classList.add('fade-in');
-        articleView.classList.add('hidden');
+        // Mengembalikan Title ke Default
+        document.title = "Bulls, Bears, & Bugs - by Fayadh";
+        window.scrollTo(0, 0);
         homeView.classList.remove('hidden');
+        homeView.classList.add('fade-in');
         renderFeed();
       }
     }
